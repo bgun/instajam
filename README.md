@@ -9,15 +9,18 @@
  - setup
    - invite mechanism
    - social sharing
- - music parameters
-   - musical scale
+ - variable musical parameters
+   - scale
    - tempo
+   - meter
+   - key
    - different instruments/sounds
    - number of players
    - mixing controls (conductor mode)
+   - different note lengths
 
 # Tech
- - Firebase?
+ - firebase?
  - sound library?
- - Backbone?
- - Require.js?
+ - backbone?
+ - require.js?
