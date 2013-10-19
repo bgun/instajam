@@ -1,11 +1,13 @@
 <div id="track-view">
-  <table>
+  <table id="grid">
+  <tbody>
   <% _.each(grid, function(g) { %>
     <tr>
       <% _.each(g, function(i) { %>
-        <td><%= i %></td>
+        <td><div class="button" id="button-<%=i.index%>"></div></td>
       <% }); %>
     </tr>
   <% }); %>
+  </tbody>
   </table>
 </div>
