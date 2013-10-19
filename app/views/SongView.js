@@ -25,31 +25,21 @@ App.Views.SongView = Backbone.View.extend({
 
       if (trackedChanges.length) {
 
-        var layer = [];
-        for (var i=0; i<256; i++) {
-          layer.push([]);
-        }
+        var tuples = [];
 
         for (var i=0; i<trackedChanges.length; i++) {
           for (var j=0; j<trackedChanges[i].cells.length; j++) {
-            layer[trackedChanges[i].cells[j]].push(trackedChanges[i].key);
+            if ( t.getCol( trackedChanges[i].cells[j] ) === column ) {
+              tuples.push( [ trackedChanges[i].cells[j], trackedChanges[i].trackNum ] );
+            }
           }
         }
 
-        var sliceToPlay = [];
-        for (var i=0; i<256; i++) {
-          if(i%16 === column && layer[i].length > 0){
-            sliceToPlay.push(Math.floor(i/16))
-          }
-        }
+        /*var playerIndex = trackedChanges[intNum].trackNum;*/
 
-        var playerIndex = trackedChanges[intNum].trackNum;
-
-        if(t.playing) {
-          t.playSlice(sliceToPlay, playerIndex);
-          //console.time("render slice");
-          t.renderSlice(column, sliceToPlay, playerIndex);
-          //console.timeEnd("render slice");
+        if (t.playing) {
+          //t.playSlice(sliceToPlay, playerIndex);
+          t.renderSlice(column, tuples);
         }
 
       }
@@ -86,17 +76,25 @@ App.Views.SongView = Backbone.View.extend({
     }
   },
 
-  renderSlice: function(column, slice, playerIndex) {
+  getRow: function(n) {
+    return Math.floor( n/16 );
+  },
+
+  getCol: function(n) {
+    return n % 16;
+  },
+
+  renderSlice: function(column, slice) {
     var t = this;
 
     t.$grid.find('.cell').removeClass('playing');
     t.$grid.find('.column-' + column).removeClass('selected').removeClass('player-1 player-2 player-3 player-4');
-    var $cols = t.$grid.find('.column-'+column);
+    var $cols = t.$grid.find('.column-' + column);
     $cols.addClass('playing');
 
     for (i in slice) {
-      var $nodeToPlay = $cols.filter('.row-' + slice[i]);
-      $nodeToPlay.addClass('selected').addClass('player-' + playerIndex);
+      var $nodeToPlay = $cols.filter('.row-' + t.getRow(slice[i][0]) );
+      $nodeToPlay.addClass('selected').addClass('player-' + slice[i][1]);
     }
   },
 
