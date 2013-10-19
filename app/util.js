@@ -6,7 +6,8 @@ App.Utils = {
     for(i=0;i<grid.length;i++) {
       grid[i] = {
         index: i,
-        column: i%16
+        column: i%16,
+        row: Math.floor(i/16)
       };
     }
     return gridTemplate({
