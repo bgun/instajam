@@ -2,8 +2,7 @@ App.Models.SongModel = Backbone.Model.extend({
 	defaults: {
 		bpm: 80,
 		tracks: [],
-		firebaseRef: null,
-		i:0
+		firebaseRef: null
 	},
 
 	initialize: function() {
@@ -32,10 +31,6 @@ App.Models.SongModel = Backbone.Model.extend({
 	},
 
 	tracksChanged: function() {
-		var i = this.get('i');
-		i++;
-		this.set('i', i);
-		//console.log('tracksChanged', this.get('tracks'), i);
 		return this.get('tracks');
 	},
 
