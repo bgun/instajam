@@ -1,4 +1,4 @@
-App.Views.SpeakerView = Backbone.View.extend({
+App.Views.SongView = Backbone.View.extend({
 
   tagName: "div",
 
