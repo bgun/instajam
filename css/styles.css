@@ -59,7 +59,38 @@ body {
   font-weight: normal;
 }
 
-button {
+#songView {
+  margin: 2rem auto;
+  max-width: 44rem;
+}
+#songViewInner {
+  margin-left:12rem;
+}
+
+#sidebar {
+  float: left;
+  padding: 2rem 0;
+  width: 12rem;
+}
+#sidebar .button.pause {
+  display: inline-block;
+}
+
+#legend {
+  display: block;
+  padding: 1rem;
+}
+#legend .player-0 { color: #3FA9F5;}
+#legend .player-1 { color: #7AC943;}
+#legend .player-2 { color: #FF931E;}
+#legend .player-3 { color: #FF1D25;}
+
+
+
+
+
+
+.button {
   -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
   -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
   box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -95,25 +126,13 @@ button {
   text-shadow:1px 1px 0px #ffffff;
   margin: 0 10px;
 }
-button:hover {
+.button:hover {
   background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ccc), color-stop(1, #ededed) );
   background:-moz-linear-gradient( center top, #ccc 5%, #ededed 100% );
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ccc', endColorstr='#ededed');
   background-color:#ccc;
 }
-button:active {
+.button:active {
   position:relative;
   top:1px;
 }
-
-#gridContainer button.pause {
-  display: inline-block;
-}
-
-#gridContainer #legend {
-  display: inline-block;
-}
-#legend .player-0 { color: #3FA9F5;}
-#legend .player-1 { color: #7AC943;}
-#legend .player-2 { color: #FF931E;}
-#legend .player-3 { color: #FF1D25;}
