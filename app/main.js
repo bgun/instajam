@@ -11,16 +11,17 @@ $(function() {
   var AppRouter = Backbone.Router.extend({
 
     routes: {
-      "songs/:song/"          : "song",
+      "songs/:song"          : "song",
       "songs/:song/conductor" : "conductor",
       "songs/:song/track"     : "track",
       "*actions"               : "defaultRoute"
     },
 
     conductor: function(songId) {
-      app.views.conductor = new App.Views.ConductorView({
-        foo: "bar"
-      });
+      console.log('conductor', songId);
+      // app.views.conductor = new App.Views.ConductorView({
+      //   foo: "bar"
+      // });
     },
 
     song: function(songId) {
