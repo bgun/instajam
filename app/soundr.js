@@ -1,6 +1,4 @@
 App.soundr = {
-	tracks: [],
-	trackSetup: [],
 	
 	tick: function(data){
 		for (var i=0; i < data.tracks.length; i++) {
@@ -17,13 +15,14 @@ App.soundr = {
 	play: {
 		strings: [],
 		synth: [],
+		synth2: [],
 		drums: []
 	},
 
 	presets: {
 		strings: function(){
 			
-			var a = new Gibberish.PolyKarplusStrong({damping:.8, maxVoices:16, amp:3}).connect();
+			var a = new Gibberish.PolyKarplusStrong({damping:.8, maxVoices:16, amp:2}).connect();
 			
 			App.soundr.play.strings[15] = function(){a.note(130.813);};
 			App.soundr.play.strings[14] = function(){a.note(146.832);};
@@ -45,7 +44,29 @@ App.soundr = {
 		},
 	
 		synth: function(){
-			var a =	new Gibberish.PolySynth({ amp:.7, attack:44, decay:4410, maxVoices:16}).connect();
+			var a =	new Gibberish.PolySynth({ amp:.5, attack:44, decay:4410, maxVoices:16}).connect();
+			
+			App.soundr.play.synth2[15] = function(){a.note(130.813);};
+			App.soundr.play.synth2[14] = function(){a.note(146.832);};
+			App.soundr.play.synth2[13] = function(){a.note(164.814);};
+			App.soundr.play.synth2[12] = function(){a.note(195.998);};
+			App.soundr.play.synth2[11] = function(){a.note(220);};
+			App.soundr.play.synth2[10] = function(){a.note(261.626);};
+			App.soundr.play.synth2[9] = function(){a.note(293.664);};
+			App.soundr.play.synth2[8] = function(){a.note(329.628);};
+			App.soundr.play.synth2[7] = function(){a.note(391.995);};
+			App.soundr.play.synth2[6] = function(){a.note(440);};
+			App.soundr.play.synth2[5] = function(){a.note(523.251);};
+			App.soundr.play.synth2[4] = function(){a.note(587.330);};
+			App.soundr.play.synth2[3] = function(){a.note(659.255);};
+			App.soundr.play.synth2[2] = function(){a.note(783.991);};
+			App.soundr.play.synth2[1] = function(){a.note(880.000);};
+			App.soundr.play.synth2[0] = function(){a.note(1046.50);};
+
+		},
+		
+		synth2: function(){
+			var a = new Gibberish.PolyFM({ amp:.5, cmRatio:10, index:3, attack:8000, decay:5000, maxVoices:16 }).connect(); 
 			
 			App.soundr.play.synth[15] = function(){a.note(130.813);};
 			App.soundr.play.synth[14] = function(){a.note(146.832);};
@@ -90,6 +111,7 @@ App.soundr = {
 		Gibberish.init();
 		App.soundr.presets.strings();
 		App.soundr.presets.synth();
+		App.soundr.presets.synth2();
 		App.soundr.presets.drums();
 		//Gibberish.Binops.export();
 	}
