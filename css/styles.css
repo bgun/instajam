@@ -61,11 +61,16 @@ body {
   margin: 2rem auto;
   text-align: center;
 }
+.url {
+  font-size: 2rem;
+}
+/*
 .main h1 {
   font-size: 5rem;
   font-family: 'Rochester', cursive;
   font-weight: normal;
 }
+*/
 
 #songView {
   margin: 2rem auto;

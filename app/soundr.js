@@ -24,7 +24,6 @@ App.soundr = {
 		strings: [],
 		synth: [],
 		synth2: [],
-		long: [],
 		drums: []
 	},
 
@@ -33,11 +32,12 @@ App.soundr = {
 			
 			var a = new Gibberish.PolyKarplusStrong({damping:.6, maxVoices:16, amp:2}).connect();
 			
-			App.soundr.play.strings[15] = function(){a.note(130.813);};
-			App.soundr.play.strings[14] = function(){a.note(146.832);};
-			App.soundr.play.strings[13] = function(){a.note(174.614);};
-			App.soundr.play.strings[12] = function(){a.note(195.998);};
-			App.soundr.play.strings[11] = function(){a.note(220);};
+			App.soundr.play.strings[15] = function(){a.note(65.4064);};
+			App.soundr.play.strings[14] = function(){a.note(73.4162);};
+			App.soundr.play.strings[13] = function(){a.note(87.3071);};
+			App.soundr.play.strings[12] = function(){a.note(97.9989);};
+			App.soundr.play.strings[11] = function(){a.note(110);};
+			
 			App.soundr.play.strings[10] = function(){a.note(261.626);};
 			App.soundr.play.strings[9] = function(){a.note(293.664);};
 			App.soundr.play.strings[8] = function(){a.note(349.228);};
@@ -74,32 +74,9 @@ App.soundr = {
 
 		},
 		
-		long: function(){
-			var a =	new Gibberish.PolySynth({ amp:.5, attack:440, decay:22050, maxVoices:16}).connect();
-			var b = new Gibberish.Flanger({input:a, rate:.5, amount:125, feedback:.7}).connect();
-			
-			App.soundr.play.long[15] = function(){a.note(130.813);};
-			App.soundr.play.long[14] = function(){a.note(146.832);};
-			App.soundr.play.long[13] = function(){a.note(174.614);};
-			App.soundr.play.long[12] = function(){a.note(195.998);};
-			App.soundr.play.long[11] = function(){a.note(220);};
-			App.soundr.play.long[10] = function(){a.note(261.626);};
-			App.soundr.play.long[9] = function(){a.note(293.664);};
-			App.soundr.play.long[8] = function(){a.note(349.228);};
-			App.soundr.play.long[7] = function(){a.note(391.995);};
-			App.soundr.play.long[6] = function(){a.note(440);};
-			App.soundr.play.long[5] = function(){a.note(523.251);};
-			App.soundr.play.long[4] = function(){a.note(587.330);};
-			App.soundr.play.long[3] = function(){a.note(659.255);};
-			App.soundr.play.long[2] = function(){a.note(783.991);};
-			App.soundr.play.long[1] = function(){a.note(880.000);};
-			App.soundr.play.long[0] = function(){a.note(1046.50);};
-
-		},
-		
 		synth: function(){
-			var a = new Gibberish.PolyKarplusStrong({damping:.4, maxVoices:16, amp:2}).connect(); 
-			var b = new Gibberish.Reverb({input:a, roomSize:.7, wet:1, dry:.25}).connect();
+			var a = new Gibberish.PolyKarplusStrong({damping:.1, maxVoices:16, amp:2}).connect(); 
+			var b = new Gibberish.Reverb({input:a, roomSize:1, wet:1, dry:.25}).connect();
 
 			App.soundr.play.synth[15] = function(){a.note(130.813);};
 			App.soundr.play.synth[14] = function(){a.note(146.832);};
@@ -159,7 +136,6 @@ App.soundr = {
 		Gibberish.init();
 		App.soundr.presets.strings();
 		App.soundr.presets.synth();
-		//App.soundr.presets.long();
 		App.soundr.presets.synth2();
 		App.soundr.presets.drums();
 		//Gibberish.Binops.export();
