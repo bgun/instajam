@@ -22,6 +22,7 @@ App.Models.TrackModel = Backbone.Model.extend({
 		this.on('change:name', this.changeName);
 	},
 	changeCells: function(){
+		console.log('Track.changeCells', this.get('cells'));
 		this.get('firebaseRef').child('cells').set(this.get('cells'));
 	},
 	changeName: function() {
