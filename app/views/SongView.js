@@ -79,7 +79,7 @@ App.Views.SongView = Backbone.View.extend({
     }
   },
 
-  playSlice: function(slice) {
+  playSlice: function(slice, ) {
 
     // synth, synth2, drums, strings
     App.soundr.tick({
