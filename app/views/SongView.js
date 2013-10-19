@@ -5,7 +5,8 @@ App.Views.SongView = Backbone.View.extend({
   tagName: "div",
 
   events: {
-    "click .pause": "togglePause"
+    "click .play"  : "play",
+    "click .pause" : "pause"
   },
 
   initialize: function() {
@@ -63,16 +64,13 @@ App.Views.SongView = Backbone.View.extend({
     t.$grid.height(t.$grid.width());
   },
 
-  togglePause: function(e) {
+  play: function(e) {
     e.preventDefault();
-    var t = this;
-    if(t.playing) {
-      t.playing = false;
-      $(e.target).text('Play');
-    } else {
-      t.playing = true;
-      $(e.target).text('Pause');
-    }
+    t.playing = true;
+  },
+  pause: function(e) {
+    e.preventDefault();
+    t.playing = false;
   },
 
   getRow: function(n) {
