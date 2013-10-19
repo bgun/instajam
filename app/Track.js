@@ -1,6 +1,6 @@
 App.Models.TrackModel = Backbone.Model.extend({
 	defaults: {
-		cells: -1,
+		cells: '',
 		name: 'Unknown',
 		firebaseRef: null
 	},
