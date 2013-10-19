@@ -12,7 +12,7 @@ App.Views.SongView = Backbone.View.extend({
   initialize: function() {
 
     var id, trackedChanges,
-        column = 0
+        column = 0,
         t = this;
 
     App.soundr.init();
@@ -82,7 +82,8 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   renderSlice: function(column, slice) {
-    var t = this;
+    var i,
+        t = this;
 
     t.$grid.find('.cell').removeClass('playing');
     t.$grid.find('.column-' + column).removeClass('selected').removeClass('player-1 player-2 player-3 player-4');
@@ -101,7 +102,12 @@ App.Views.SongView = Backbone.View.extend({
     var output = [];
 
     _.each(slice, function(s) {
-      output.push([ t.getRow(s[0]), styles[s[1]%4] ]);
+      var trackNum = s[1];
+      var style = styles[trackNum%4];
+      // var tracks = t.model.get('tracks');
+      // var myTrack = _(tracks).where({trackNum: trackNum});
+      // myTrack.instrument = style;
+      output.push([ t.getRow(s[0]), style ]);
     });
 
     App.soundr.tickTuple(output);

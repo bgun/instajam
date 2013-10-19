@@ -1,4 +1,4 @@
 <% _.each(tracks, function(track) { %>
 	<dt class="player-<%= track.trackNum %>"><%= track.name ? track.name : 'unknown' %></dt>
-  <dd><%= instrument %></dd>
+  <dd><%= track.style %></dd>
 <% }); %>
