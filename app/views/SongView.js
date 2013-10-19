@@ -6,18 +6,20 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   initialize: function() {
-  	var id,
-  		t = this;
+  	var id, t;
 
-  	t.render();
+  	this.render();
 
+  	t = this;
   	id = setInterval(function() {
   		t.update();
-  	}, 125 /*t.tempo*/);
+  	}, t.model.getIntervalMillis);
   },
 
   render: function() {
+  	var template = JST['songId']();
 
+  	this.$el.html( template );
   },
 
   update: function() {
@@ -25,3 +27,7 @@ App.Views.SongView = Backbone.View.extend({
   }
 
 });
+
+mySong = new App.songs.model = 
+
+.getIntervalMillis();
