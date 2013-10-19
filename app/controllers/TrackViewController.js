@@ -1,9 +1,8 @@
 App.TrackViewController = {
 
-  showTrackView: function(songId) {
+  showTrackView: function() {
     var trackView = new App.Views.TrackView({
-      songId: songId,
-      model: App.Models.Track
+      model: new App.Models.TrackModel()
     });
   }
 

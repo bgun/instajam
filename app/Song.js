@@ -1,7 +1,7 @@
 App.Models.SongModel = Backbone.Model.extend({
 	defaults: {
 		bpm: 80,
-		tracks: [] //new App.Collections.TrackCollection()
+		tracks: new App.Collections.TrackCollection()
 	},
 
 	/*
@@ -13,10 +13,13 @@ App.Models.SongModel = Backbone.Model.extend({
 	*/
 	getIntervalMillis: function() {
 		return Math.round(15000/this.get('bpm'));
+	},
+	addTrack: function() {
+		this.get('tracks').add({});
 	}
 });
 
-App.Collections.SongCollection = Backbone.Collection.extend({
-	model: App.Models.SongModel//,
-	//firebase: new Backbone.Firebase("https://mobilejam.firebaseio.com")
-});
+// App.Collections.SongCollection = Backbone.Collection.extend({
+// 	model: App.Models.SongModel//,
+// 	//firebase: new Backbone.Firebase("https://mobilejam.firebaseio.com")
+// });
