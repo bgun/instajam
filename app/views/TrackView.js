@@ -11,6 +11,7 @@ App.Views.TrackView = Backbone.View.extend({
     var t = this;
     t.render(t.options.songId);
     t.model = t.options.model;
+    t.cells = [];
   },
 
   render: function() {
@@ -44,12 +45,17 @@ App.Views.TrackView = Backbone.View.extend({
       var index = $t.index();
 
       if(grid[index].active) {
+        grid[index].active = false;
         $t.removeClass('active');
-        console.log(index+" off");
+        t.cells = _.filter(t.cells,function(i) { return i != index; });
       } else {
+        grid[index].active = true;
         $t.addClass('active');
-        console.log(index+" on");
+        t.cells.push(index);
       }
+      t.model.set({
+        cells: t.cells
+      });
     });
   }
 
