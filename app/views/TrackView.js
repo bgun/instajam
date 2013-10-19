@@ -43,7 +43,7 @@ App.Views.TrackView = Backbone.View.extend({
 
     var sendCells = function(cells) {
       var obj = {
-        cells: t.cells && t.cells.length ? t.cells.join(',') : -1,
+        cells: t.cells.join(','),
         name: $name.val()
       };
       console.log(obj);
