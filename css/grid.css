@@ -1,10 +1,10 @@
-#track-view {
+#trackView {
+  background: #222;
   height: 100%;
   width: 100%;
 }
 
 #grid {
-  background: #111;
   box-sizing: border-box;
   font-size: 2rem; /* 20px; */
   margin: 0 auto;
@@ -12,8 +12,8 @@
   padding: 1rem;
 }
 #grid .cell {
-  border: 1px solid #000;
-  border-radius: 1rem;
+  border:
+  border-radius: 100%;
   box-sizing: border-box;
   color: #FFF;
   float: left;
@@ -29,6 +29,8 @@
 }
 #grid .cell .overlay {
   display: none;
+  height: 100%;
+  width: 100%;
 }
 #grid .cell.selected .content {
   background: pink;
