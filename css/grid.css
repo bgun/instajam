@@ -12,9 +12,6 @@
   position: relative;
   text-align: center;
 }
-#grid .cell.playing {
-  background: rgba(255,255,255,0.1);
-}
 #grid .cell .content {
   background: #555;
   border-radius: 1rem;
@@ -65,15 +62,16 @@
   clear: both;
 }
 
-#grid .cell.selected.player-1 .content { background-color: #3FA9F5; }
-#grid .cell.selected.player-2 .content { background-color: #7AC943; }
-#grid .cell.selected.player-3 .content { background-color: #FF931E; }
-#grid .cell.selected.player-4 .content { background-color: #FF1D25; }
-#grid .cell.selected.player-5 .content { background-color: #FF7BAC; }
-#grid .cell.selected.player-6 .content { background-color: #BDCCD4; }
-#grid .cell.selected.player-7 .content { background-color: #2E3192; }
-#grid .cell.selected.player-8 .content { background-color: #93278F; }
-#grid .cell.selected.player-9 .content { background-color: #FFFF00; }
+#grid .cell.selected .content { background-color: #BBB; }
+#grid .cell.selected.player-1  .content { background-color: #3FA9F5; }
+#grid .cell.selected.player-2  .content { background-color: #7AC943; }
+#grid .cell.selected.player-3  .content { background-color: #FF931E; }
+#grid .cell.selected.player-4  .content { background-color: #FF1D25; }
+#grid .cell.selected.player-5  .content { background-color: #FF7BAC; }
+#grid .cell.selected.player-6  .content { background-color: #BDCCD4; }
+#grid .cell.selected.player-7  .content { background-color: #2E3192; }
+#grid .cell.selected.player-8  .content { background-color: #93278F; }
+#grid .cell.selected.player-9  .content { background-color: #FFFF00; }
 #grid .cell.selected.player-10 .content { background-color: #006837; }
 #grid .cell.selected.player-11 .content { background-color: #998675; }
 #grid .cell.selected.player-12 .content { background-color: #00FFFF; }
