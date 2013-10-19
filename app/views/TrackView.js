@@ -48,12 +48,12 @@ App.Views.TrackView = Backbone.View.extend({
 
     var sendCells = function(cells) {
       var obj = {
-        cells: t.cells && t.cells.length ? t.cells : -1,
+        cells: t.cells && t.cells.length ? t.cells.join(',') : -1,
         name: $name.val()
-      }
+      };
       console.log(obj);
       t.model.set(obj);
-    }
+    };
     var changeCell = function(e) {
       console.log(e.type);
       var $t = $(e.currentTarget);
@@ -70,7 +70,7 @@ App.Views.TrackView = Backbone.View.extend({
       }
       smartSendCells(t.cells);
       return false;
-    }
+    };
     var smartSendCells = _.debounce(sendCells, 100, true);
     var dragging = false;
 

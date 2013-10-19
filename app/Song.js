@@ -18,7 +18,7 @@ App.Models.SongModel = Backbone.Model.extend({
 					tracks.push({
 						key: key,
 						name: item.name,
-						cells: item.cells
+						cells: item.cells.split(',')
 					});
 				}
 			});
@@ -35,7 +35,7 @@ App.Models.SongModel = Backbone.Model.extend({
 		var i = this.get('i');
 		i++;
 		this.set('i', i);
-		//console.log('tracksChanged', this.get('tracks'), i);
+		console.log('tracksChanged', this.get('tracks'), i);
 		return this.get('tracks');
 	},
 
