@@ -105,3 +105,15 @@ button:active {
   position:relative;
   top:1px;
 }
+
+#gridContainer button.pause {
+  display: inline-block;
+}
+
+#gridContainer #legend {
+  display: inline-block;
+}
+#legend .player-0 { color: #3FA9F5;}
+#legend .player-1 { color: #7AC943;}
+#legend .player-2 { color: #FF931E;}
+#legend .player-3 { color: #FF1D25;}
