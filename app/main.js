@@ -1,4 +1,4 @@
-var App = {
+var App = App || {
   Collections: {},
   Models: {},
   Views: {},
