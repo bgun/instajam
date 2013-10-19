@@ -45,13 +45,17 @@ App.Views.TrackView = Backbone.View.extend({
       var index = $t.index();
 
       if(grid[index].active) {
+        grid[index].active = false;
         $t.removeClass('active');
         t.cells = _.filter(t.cells,function(i) { return i != index; });
       } else {
+        grid[index].active = true;
         $t.addClass('active');
         t.cells.push(index);
       }
-      console.log(t.cells);
+      t.model.set({
+        cells: t.cells
+      });
     });
   }
 
