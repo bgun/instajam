@@ -51,7 +51,7 @@ App.Views.SongView = Backbone.View.extend({
     // if selected, `selected` class
     // if playing, `playing` class
 
-    var gridTemplate = _.template(templateManager.getTemplate("grid"));
+    /*var gridTemplate = _.template(templateManager.getTemplate("grid"));
     var grid = Array( App.settings.GRID_SIZE * App.settings.GRID_SIZE );
 
     for(i=0; i<grid.length; i++) {
@@ -60,7 +60,15 @@ App.Views.SongView = Backbone.View.extend({
 
     this.$el.html( _.template( gridTemplate({ grid: grid })) );
 
-    $('#content').html(this.$el);
+    $('#content').html(this.$el);*/
+
+    var songTemplate = _.template(templateManager.getTemplate("song"));
+
+    var songHtml = songTemplate({
+      gridCells: App.Utils.makeGrid(App.settings.GRID_SIZE)
+    });
+    t.$el.html(songHtml);
+    $('#content').html(t.$el);
 
     $grid = this.$el.find('#grid');
     $grid.height($grid.width());
@@ -69,11 +77,10 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   renderSlice: function(slice) {
-    console.log("SLICE");
-    for (var i=0; i<slice.length; i++) {
-      
-      $('#cell-' + slice[i]);
+    $('.cell').removeClass('play');
 
+    for (var i=0; i<slice.length; i++) {  
+      $('#cell-' + slice[i]).addClass('play');
     }
   },
 
