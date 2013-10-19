@@ -30,6 +30,7 @@ $(function() {
 
     defaultRoute: function(actions) {
       console.log('main');
+      new App.Views.MainView().render();
     }
 
   });
