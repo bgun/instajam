@@ -27,10 +27,7 @@ $(function() {
       console.log('song', songId);
     },
 
-    track: function(songId) {
-      console.log('track', songId);
-      // will be in a separate file asap -- ben
-    },
+    track: App.TrackViewController.showTrackView,
 
     defaultRoute: function(actions) {
       console.log('main');
