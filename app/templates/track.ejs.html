@@ -1,2 +1,11 @@
 <div id="track-view">
+  <table>
+  <% _.each(grid, function(g) { %>
+    <tr>
+      <% _.each(g, function(i) { %>
+        <td><%= i %></td>
+      <% }); %>
+    </tr>
+  <% }); %>
+  </table>
 </div>

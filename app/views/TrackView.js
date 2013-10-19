@@ -18,15 +18,17 @@ App.Views.TrackView = Backbone.View.extend({
     var t = this;
     console.log(songId);
 
-    $.ajax({
-      url: "app/templates/track.tmpl.html",
-      async: true,
-      type: "GET",
-      dataType: "text",
-      success: function(resp) {
-        console.log(_.template(resp));
-      }
+    var _tmpl = _.template(templateManager.getTemplate(t.template));
+
+    var grid = Array(12);
+    for(var i=0;i<grid.length;i++) {
+      grid[i] = Array(12);
+    }
+    var html = _tmpl({
+      grid: grid
     });
+
+    $('#content').html(html);
   }
 
 });
