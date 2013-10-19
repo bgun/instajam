@@ -11,10 +11,10 @@ $(function() {
   var AppRouter = Backbone.Router.extend({
 
     routes: {
-      "song/:song/"          : "song",
-      "song/:song/conductor" : "conductor",
-      "song/:song/track"     : "track",
-      "*actions"               : "defaultRoute"
+      "song/:song/"         : "song",
+      "song/:song/conductor": "conductor",
+      "song/:song/track"    : "track",
+      "*actions"            : "defaultRoute"
     },
 
     conductor: function(songId) {
