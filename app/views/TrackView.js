@@ -75,15 +75,11 @@ App.Views.TrackView = Backbone.View.extend({
         if(e.type == "mouseup" || e.type == "touchend") {
           dragging = false;
         }
-      })
-      .on('mouseover touchmove','.cell',function(e) {
-        e.preventDefault();
-        if(dragging) {
-          changeCell(e);
-        }
       });
 
-    window.scrollTo(0,1);
+    setTimeout(function() {
+      window.scrollTo(0,1);
+    },0);
     console.timeEnd("render");
   },
 
