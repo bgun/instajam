@@ -11,15 +11,18 @@ App.Models.SongModel = Backbone.Model.extend({
 
 		var tracksRefChanged = function(snapshot) {
 			var val = snapshot.val();
+			var i = 0;
 			var tracks = [];
 			_(val).each(function(item, key){
-				if (item.cells) {
+				if (item.cells && item.cells.length) {
 					tracks.push({
+						trackNum: i,
 						key: key,
 						name: item.name,
 						cells: item.cells.split(',')
 					});
 				}
+				i++;
 			});
 			self.set('tracks', tracks);
 		};
