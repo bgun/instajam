@@ -124,15 +124,14 @@ body {
   font-style: italic;
   margin-bottom: 1rem;
 }
-#legend .player-0 { color: #3FA9F5;}
-#legend .player-1 { color: #7AC943;}
-#legend .player-2 { color: #FF931E;}
-#legend .player-3 { color: #FF1D25;}
-
-
-
-
-
+#legend .player-0 { color: #3FA9F5; }
+#legend .player-1 { color: #7AC943; }
+#legend .player-2 { color: #FF931E; }
+#legend .player-3 { color: #FF1D25; }
+#legend .player-4 { color: #00FFFF; }
+#legend .player-5 { color: #2E3192; }
+#legend .player-6 { color: #93278F; }
+#legend .player-7 { color: #FFFF00; }
 
 .button {
   -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
