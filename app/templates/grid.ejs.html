@@ -1,11 +1,5 @@
-<table id="grid">
-  <tbody>
+<div id="grid">
   <% _.each(grid, function(g) { %>
-    <tr>
-      <% _.each(g, function(i) { %>
-        <td><div class="cell" id="cell-<%=i.index%>"></div></td>
-      <% }); %>
-    </tr>
+    <div class="cell" id="cell-<%=g.index%>"></div>
   <% }); %>
-  </tbody>
-</table>
+</div>

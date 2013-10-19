@@ -20,16 +20,11 @@ App.Views.TrackView = Backbone.View.extend({
     var trackTemplate = _.template(templateManager.getTemplate("track"));
     var gridTemplate  = _.template(templateManager.getTemplate("grid"));
 
-    var gridSize = App.settings.GRID_SIZE;
+    var gridSize = App.settings.GRID_SIZE * App.settings.GRID_SIZE;
     var grid = Array(gridSize);
-    var index = 0;
     for(i=0;i<grid.length;i++) {
-      grid[i] = Array(gridSize);
-      for(j=0;j<grid[i].length;j++) {
-        grid[i][j] = {
-          index: index
-        }
-        index++;
+      grid[i] = {
+        index: i
       }
     }
 
@@ -44,7 +39,9 @@ App.Views.TrackView = Backbone.View.extend({
 
     $('#content').on('click','.cell',function(e) {
       e.preventDefault();
-      $(this).toggleClass('active');
+      var $t = $(this);
+      $t.toggleClass('active');
+      console.log(
     });
   }
 

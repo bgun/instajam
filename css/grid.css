@@ -4,22 +4,17 @@
   padding: 0;
   width: 32rem;
 }
-#grid td {
-  height: 2rem;
-  margin: 0;
-  padding: 0;
-  width: 2rem;
-}
-#grid td .cell {
+#grid .cell {
   background: red;
   border-radius: 1rem;
   box-sizing: border-box;
   color: #FFF;
+  float: left;
   height: 2rem;
   line-height: 2rem;
   text-align: center;
   width: 2rem;
 }
-#grid td .cell.active {
+#grid .cell.active {
   background: pink;
 }
