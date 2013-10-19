@@ -16,14 +16,14 @@ App.Models.SongModel = Backbone.Model.extend({
 			_(val).each(function(item, key){
 				if (item.cells !== -1) {
 					tracks.push({
-						name: key,
+						key: key,
+						name: item.name,
 						cells: item.cells
 					});
 				}
 			});
 			self.set('tracks', tracks);
 		};
-
 
 		tracksRef.on('child_changed', tracksRefChanged);
 		tracksRef.on('value', tracksRefChanged);

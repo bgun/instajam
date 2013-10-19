@@ -1,6 +1,6 @@
 var templateManager = (function($, _) {
   var templates = {},
-      templateKeys = ['grid', 'song', 'track'];
+      templateKeys = ['main','grid', 'song', 'track'];
 
   var getTemplate = function(key) {
     if (!templates[key]) {
