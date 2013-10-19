@@ -23,7 +23,7 @@ App.soundr = {
 	play: {
 		strings: [],
 		synth: [],
-		synth2: [],
+		longStrings: [],
 		drums: []
 	},
 
@@ -136,7 +136,7 @@ App.soundr = {
 		Gibberish.init();
 		App.soundr.presets.strings();
 		App.soundr.presets.synth();
-		App.soundr.presets.synth2();
+		App.soundr.presets.longStrings();
 		App.soundr.presets.drums();
 		//Gibberish.Binops.export();
 	}
