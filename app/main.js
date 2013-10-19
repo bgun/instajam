@@ -2,11 +2,14 @@ window.App = {
   Collections: {},
   Models: {},
   Views: {},
-  Templates: {}
+  Songs: []
 };
 
 $(function() {
   templateManager.loadTemplates();
+  var songsRef = new Firebase('https://mobilejam.firebaseio.com/songs');
+  window.songsRef = songsRef;
+
   var AppRouter = Backbone.Router.extend({
 
     routes: {

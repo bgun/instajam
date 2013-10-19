@@ -12,7 +12,8 @@ App.Views.MainView = Backbone.View.extend({
 	},
 
 	render: function() {
-		this.$el.html("<a href='#/song'>Create a song.</a>");
+		var t = templateManager.getTemplate('Main');
+		this.$el.html(t);
 	}
 
 });
