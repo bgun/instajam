@@ -98,7 +98,7 @@ App.Views.SongView = Backbone.View.extend({
 
   playSlice: function(slice) {
     var t = this;
-    var styles = ["synth", "synth2", "drums", "strings"];
+    var styles = ["strings", "synth", "drums", "longStrings"];
     var output = [];
 
     _.each(slice, function(s) {
