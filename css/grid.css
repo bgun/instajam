@@ -1,15 +1,9 @@
-#trackView {
-  background: #222;
-  height: 100%;
-  width: 100%;
-}
-
 #grid {
   box-sizing: border-box;
   font-size: 2rem; /* 20px; */
   margin: 0 auto;
-  max-width: 32rem;
-  padding: 1rem;
+  padding: 0.5rem;
+  width: 100%;
 }
 #grid .cell {
   border:

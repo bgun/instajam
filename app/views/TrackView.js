@@ -43,19 +43,19 @@ App.Views.TrackView = Backbone.View.extend({
     $grid.height($grid.width());
     var cellWidth = (100 / gridWidth) + "%";
     $grid.find('.cell').width(cellWidth).height(cellWidth);
+    $name = $('#userNameInput');
 
     var sendCells = function(cells) {
-      console.log(t.cells.length);
-      console.log(t.cells);
-      t.model.set({
-        cells: t.cells && t.cells.length ? t.cells : -1
-      });
+      var obj = {
+        cells: t.cells && t.cells.length ? t.cells : -1,
+        name: $name.val()
+      }
+      console.log(obj);
+      t.model.set(obj);
     }
-    var smartSendCells = _.debounce(sendCells, 100, true);
-
-    $('#content').on('mouseenter','.cell',function(e) {
-      e.preventDefault();
-      var $t = $(this);
+    var changeCell = function(e) {
+      console.log(e.type);
+      var $t = $(e.currentTarget);
       var index = $t.index();
 
       if(grid[index].selected) {
@@ -68,7 +68,30 @@ App.Views.TrackView = Backbone.View.extend({
         t.cells.push(index);
       }
       smartSendCells(t.cells);
+      return false;
+    }
+    var smartSendCells = _.debounce(sendCells, 100, true);
+    var dragging = false;
+
+    $('#content').on('click','.cell',function(e) {
+      changeCell(e);
     });
+    $('#content').on('mouseup mousedown touchstart touchend',function(e) {
+      if(e.type == "mousedown" || e.type == "touchstart") {
+        dragging = true;
+      }
+      if(e.type == "mouseup" || e.type == "touchend") {
+        dragging = false;
+      }
+    });
+    $('#content').on('mouseover touchmove','.cell',function(e) {
+      e.preventDefault();
+      if(dragging) {
+        changeCell(e);
+      }
+    });
+
+    window.scrollTo(0,1);
   }
 
 });

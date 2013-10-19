@@ -6,3 +6,29 @@ body {
 .hide {
   display: none;
 }
+
+#trackView {
+  background: #222;
+  height: 100%;
+  position: fixed;
+  width: 101%;
+}
+#trackViewInner {
+  margin: 0 auto;
+  max-width: 32rem;
+}
+#userNameInput {
+  border: 0;
+  background: rgba(255,255,255,0.1);
+  border-radius: 0.5rem;
+  color: #AAA;
+  display: block;
+  font-size: 1.8rem;
+  height: 2.4rem;
+  margin: 0 auto;
+  max-width: 90%;
+  outline: none;
+  text-align: center;
+  width: 100%;
+}
+
