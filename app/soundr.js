@@ -75,7 +75,7 @@ App.soundr = {
 		},
 		
 		synth: function(){
-			var a = new Gibberish.PolyKarplusStrong({damping:.1, maxVoices:16, amp:2}).connect(); 
+			var a = new Gibberish.PolyKarplusStrong({damping:.1, maxVoices:16, amp:2})(); 
 			var b = new Gibberish.Reverb({input:a, roomSize:1, wet:1, dry:.25}).connect();
 
 			App.soundr.play.synth[15] = function(){a.note(130.813);};
@@ -99,21 +99,21 @@ App.soundr = {
 
 		drums: function(){
 			
-			var a0 = new Gibberish.Kick({tone:30}).connect();
-			var a1 = new Gibberish.Snare({snappy:.3}).connect();
+			var a0 = new Gibberish.Kick({tone:30, amp: 2}).connect();
+			var a1 = new Gibberish.Snare({snappy:.3, amp: 2}).connect();
 			var a2 = new Gibberish.Hat({amp:2, pitch:275}).connect();
-			var a3 = new Gibberish.Cowbell({amp:.05, pitch:530}).connect();
-			var a4 = new Gibberish.Conga({}).connect();
-			var a5 = new Gibberish.Tom({}).connect();
-			var a6 = new Gibberish.Clave({pitch:2200}).connect();
+			var a3 = new Gibberish.Cowbell({amp:.2, pitch:530}).connect();
+			var a4 = new Gibberish.Conga({amp: 2}).connect();
+			var a5 = new Gibberish.Tom({ amp: 2}).connect();
+			var a6 = new Gibberish.Clave({pitch:2200, amp: 2}).connect();
 			
-			var a7 = new Gibberish.Kick({tone:80}).connect();
-			var a8 = new Gibberish.Snare({snappy:.8}).connect();
-			var a9 = new Gibberish.Hat({amp:2, pitch: 375}).connect();
-			var a10 = new Gibberish.Cowbell({amp:.05, pitch: 580}).connect();
-			var a11 = new Gibberish.Conga({}).connect();
-			var a12 = new Gibberish.Tom({}).connect();
-			var a13 = new Gibberish.Clave({pitch:2700}).connect();
+			var a7 = new Gibberish.Kick({tone:80, amp: 2}).connect();
+			var a8 = new Gibberish.Snare({snappy:.8, amp: 2}).connect();
+			var a9 = new Gibberish.Hat({amp:2, pitch: 375, amp: 2}).connect();
+			var a10 = new Gibberish.Cowbell({amp:.2, pitch: 580}).connect();
+			var a11 = new Gibberish.Conga({ amp: 2}).connect();
+			var a12 = new Gibberish.Tom({amp: 2}).connect();
+			var a13 = new Gibberish.Clave({pitch:2700, amp: 2}).connect();
 			
 			App.soundr.play.drums[15] = function(){a0.note();};
 			App.soundr.play.drums[14] = function(){a1.note();};
