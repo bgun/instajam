@@ -64,9 +64,10 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   renderSlice: function(slice) {
-
+    console.log("SLICE");
     for (var i=0; i<slice.length; i++) {
-      $('#cell-' + slice[i]).show();
+      
+      $('#cell-' + slice[i]);
 
     }
   },
