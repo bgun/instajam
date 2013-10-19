@@ -32,11 +32,12 @@ App.soundr = {
 			
 			var a = new Gibberish.PolyKarplusStrong({damping:.6, maxVoices:16, amp:2}).connect();
 			
-			App.soundr.play.strings[15] = function(){a.note(130.813);};
-			App.soundr.play.strings[14] = function(){a.note(146.832);};
-			App.soundr.play.strings[13] = function(){a.note(174.614);};
-			App.soundr.play.strings[12] = function(){a.note(195.998);};
-			App.soundr.play.strings[11] = function(){a.note(220);};
+			App.soundr.play.strings[15] = function(){a.note(65.4064);};
+			App.soundr.play.strings[14] = function(){a.note(73.4162);};
+			App.soundr.play.strings[13] = function(){a.note(87.3071);};
+			App.soundr.play.strings[12] = function(){a.note(97.9989);};
+			App.soundr.play.strings[11] = function(){a.note(110);};
+			
 			App.soundr.play.strings[10] = function(){a.note(261.626);};
 			App.soundr.play.strings[9] = function(){a.note(293.664);};
 			App.soundr.play.strings[8] = function(){a.note(349.228);};
