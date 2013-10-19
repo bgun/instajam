@@ -30,8 +30,12 @@ App.Views.TrackView = Backbone.View.extend({
     for(i=0;i<grid.length;i++) {
       grid[i] = {
         index: i,
-        selected: false
+        selected: false,
+        playing: false
       };
+      if((i%16==3 && i > 16) || (i == 3)) {
+        grid[i].playing = true;
+      }
     }
 
     var trackHtml = trackTemplate({
