@@ -40,8 +40,8 @@ App.Views.TrackView = Backbone.View.extend({
     $('#content').on('click','.cell',function(e) {
       e.preventDefault();
       var $t = $(this);
+      var index = $t.index();
       $t.toggleClass('active');
-      console.log(
     });
   }
 
