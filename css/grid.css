@@ -38,6 +38,8 @@
 #grid .cell.selected .content {
   border: 2px solid #fff; /* default */
 }
+
+/* IMPORTANT: any colors that are added here also need to be added to the #legend section of styles.css */
 #grid .cell.selected.player-0 .content { border: 2px solid #3FA9F5; }
 #grid .cell.selected.player-1 .content { border: 2px solid #7AC943; }
 #grid .cell.selected.player-2 .content { border: 2px solid #FF931E; }
