@@ -41,7 +41,6 @@ App.Views.TrackView = Backbone.View.extend({
       e.preventDefault();
       var $t = $(this);
       $t.toggleClass('active');
-      console.log(
     });
   }
 
