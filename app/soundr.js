@@ -52,7 +52,7 @@ App.soundr = {
 			
 		},
 	
-		synth2: function(){
+		synth: function(){
 			var a =	new Gibberish.PolySynth({ amp:.5, attack:44, decay:22050, maxVoices:16}).connect();
 			
 			App.soundr.play.synth2[15] = function(){a.note(130.813);};
@@ -74,7 +74,7 @@ App.soundr = {
 
 		},
 		
-		synth: function(){
+		longStrings: function(){
 			var a = new Gibberish.PolyKarplusStrong({damping:0.1, maxVoices:16, amp:2}); 
 			var b = new Gibberish.Reverb({input:a, roomSize:1, wet:1, dry:.25}).connect();
 
