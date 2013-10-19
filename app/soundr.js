@@ -75,7 +75,7 @@ App.soundr = {
 		},
 		
 		synth: function(){
-			var a = new Gibberish.PolyKarplusStrong({damping:.1, maxVoices:16, amp:2})(); 
+			var a = new Gibberish.PolyKarplusStrong({damping:0.1, maxVoices:16, amp:2}); 
 			var b = new Gibberish.Reverb({input:a, roomSize:1, wet:1, dry:.25}).connect();
 
 			App.soundr.play.synth[15] = function(){a.note(130.813);};
@@ -110,8 +110,8 @@ App.soundr = {
 			var a7 = new Gibberish.Kick({tone:80, amp: 2}).connect();
 			var a8 = new Gibberish.Snare({snappy:.8, amp: 2}).connect();
 			var a9 = new Gibberish.Hat({amp:2, pitch: 375, amp: 2}).connect();
-			var a10 = new Gibberish.Cowbell({amp:.2, pitch: 580}).connect();
-			var a11 = new Gibberish.Conga({ amp: 2}).connect();
+			var a10 = new Gibberish.Cowbell({amp:0.2, pitch: 580}).connect();
+			var a11 = new Gibberish.Conga({amp: 2}).connect();
 			var a12 = new Gibberish.Tom({amp: 2}).connect();
 			var a13 = new Gibberish.Clave({pitch:2700, amp: 2}).connect();
 			
