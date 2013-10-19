@@ -2,13 +2,14 @@ var App = App || {
   Collections: {},
   Models: {},
   Views: {},
-  Songs: []
+  Songs: [],
+  settings: {
+    GRID_SIZE: 16
+  }
 };
 
 $(function() {
   templateManager.loadTemplates();
-
-  window.app = {};
 
   var AppRouter = Backbone.Router.extend({
 
@@ -28,10 +29,7 @@ $(function() {
 
     song: App.SongViewController.showSongView,
 
-    track: function(songId) {
-      console.log('track', songId);
-      // will be in a separate file asap -- ben
-    },
+    track: App.TrackViewController.showTrackView,
 
     defaultRoute: function(actions) {
       console.log('main');

@@ -21,7 +21,7 @@ App.Views.TrackView = Backbone.View.extend({
 
     var _tmpl = _.template(templateManager.getTemplate(t.template));
 
-    var gridSize = 16;
+    var gridSize = App.settings.GRID_SIZE;
     var grid = Array(gridSize);
     var index = 0;
     for(i=0;i<grid.length;i++) {
@@ -41,6 +41,7 @@ App.Views.TrackView = Backbone.View.extend({
     console.log(t.$el);
 
     $('#content').html(t.$el);
+    $('head').append('<link rel="stylesheet" href="css/grid.css" />');
 
     $('#content').on('click','.button',function(e) {
       e.preventDefault();
