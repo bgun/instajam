@@ -74,19 +74,15 @@ App.Views.SongView = Backbone.View.extend({
     // if playing, `playing` class
 
     var sidebar = "<div id='sidebar'></div>";
-    var gridTemplate = _.template(templateManager.getTemplate("grid"));
-    var gridSize = App.settings.GRID_SIZE * App.settings.GRID_SIZE;
-    var grid = Array(gridSize);
 
-    for(i=0; i<grid.length; i++) {
-      grid[i] = {
-        index: i
-      }
-    }
-
-    this.$el.html( _.template(sidebar + gridTemplate({ grid: grid })) );
+    this.$el.html( _.template(sidebar + App.Utils.makeGrid(App.settings.GRID_SIZE)));
 
     $('#content').html(this.$el);
+
+    $grid = t.$el.find('#grid');
+    $grid.height($grid.width());
+    var cellWidth = (100 / App.settings.GRID_SIZE) + "%";
+    $grid.find('.cell').width(cellWidth).height(cellWidth);
   },
 
   update: function(songSlice) {
