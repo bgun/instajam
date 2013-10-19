@@ -1,3 +1,8 @@
+#track-view {
+  height: 100%;
+  width: 100%;
+}
+
 #grid {
   background: #111;
   box-sizing: border-box;
