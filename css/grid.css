@@ -6,30 +6,42 @@
   width: 100%;
 }
 #grid .cell {
-  border:
   border-radius: 100%;
   box-sizing: border-box;
   color: #FFF;
   float: left;
   line-height: 2rem;
+  position: relative;
   text-align: center;
 }
 #grid .cell .content {
-  background: red;
+  background: #555;
+  border: 0.4rem solid #222;
   border-radius: 1rem;
   box-sizing: border-box;
   height: 100%;
+  position: absolute;
+    top: 0;
+    left: 0;
   width: 100%;
 }
 #grid .cell .overlay {
   display: none;
-  height: 100%;
-  width: 100%;
+  position: absolute;
+    top: 0;
+    left: 0;
 }
 #grid .cell.selected .content {
-  background: pink;
+  background: white;
+  border-width: 0.3rem;
 }
 #grid .cell.selected .overlay {
+  background: #222;
+  border-radius: 1rem;
+  display: block;
+  height: 50%;
+  margin: 25%;
+  width: 50%;
 }
 #grid .cell.playing .overlay {
   display: block;
