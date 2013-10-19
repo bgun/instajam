@@ -1,4 +1,4 @@
-var App = {
+var App = App || {
   Collections: {},
   Models: {},
   Views: {},
@@ -7,8 +7,6 @@ var App = {
 
 $(function() {
   templateManager.loadTemplates();
-  var songsRef = new Firebase('https://mobilejam.firebaseio.com/songs');
-  window.songsRef = songsRef;
 
   window.app = {};
 
