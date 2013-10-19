@@ -6,7 +6,7 @@ var templateManager = (function($, _) {
     if (!templates[key]) {
       $.ajax({
         async: false,
-        url: 'app/templates/' + key + '.ejs.html', 
+        url: './app/templates/' + key + '.ejs.html', 
         success: function(data){
           templates[key] = data;
         }
