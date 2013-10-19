@@ -17,7 +17,7 @@ $(function() {
       // "song/:song/conductor" : "conductor",
       // "song/:song/track"     : "track",
       "song/conductor"          : "conductor",
-      "song/track"              : "track",
+      "song/track"              : "song",
       "*actions"                : "defaultRoute"
     },
 
