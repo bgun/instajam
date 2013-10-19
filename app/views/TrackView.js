@@ -25,7 +25,7 @@ App.Views.TrackView = Backbone.View.extend({
     for(i=0;i<grid.length;i++) {
       grid[i] = {
         index: i
-      }
+      };
     }
 
     var trackHtml = trackTemplate({

@@ -2,7 +2,6 @@ var App = App || {
   Collections: {},
   Models: {},
   Views: {},
-  Songs: [],
   settings: {
     GRID_SIZE: 16
   }
@@ -14,10 +13,12 @@ $(function() {
   var AppRouter = Backbone.Router.extend({
 
     routes: {
-      "song/:song"          : "song",
-      "song/:song/conductor" : "conductor",
-      "song/:song/track"     : "track",
-      "*actions"               : "defaultRoute"
+      // "song/:song"           : "song",
+      // "song/:song/conductor" : "conductor",
+      // "song/:song/track"     : "track",
+      "song/conductor"          : "conductor",
+      "song/track"              : "track",
+      "*actions"                : "defaultRoute"
     },
 
     conductor: function(songId) {
@@ -38,7 +39,8 @@ $(function() {
 
   });
 
-  var appRouter = new AppRouter();
+  App.router = new AppRouter();
+  App.tracks = new App.Collections.TrackCollection();
 
   Backbone.history.start();
 

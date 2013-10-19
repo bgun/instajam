@@ -5,6 +5,9 @@ App.Views.MainView = Backbone.View.extend({
 	events: {
 		click: function() {
 			console.log('new song!');
+			var song = App.songs.add({});
+			var songId = song.get('id');
+			App.router.navigate('song/' + songId, {trigger: true});
 		}
 	},
 
