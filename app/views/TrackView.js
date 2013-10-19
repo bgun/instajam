@@ -1,6 +1,6 @@
 App.Views.TrackView = Backbone.View.extend({
 
-  id: "track-view",
+  id: "trackView",
 
   tagName: "div",
 
@@ -21,8 +21,9 @@ App.Views.TrackView = Backbone.View.extend({
     var trackTemplate = _.template(templateManager.getTemplate("track"));
     var gridTemplate  = _.template(templateManager.getTemplate("grid"));
 
-    var gridSize = App.settings.GRID_SIZE * App.settings.GRID_SIZE;
-    var grid = Array(gridSize);
+    var gridWidth = App.settings.GRID_SIZE;
+    var gridArea = gridWidth * gridWidth;
+    var grid = Array(gridArea);
     for(i=0;i<grid.length;i++) {
       grid[i] = {
         index: i,
@@ -38,6 +39,10 @@ App.Views.TrackView = Backbone.View.extend({
 
     t.$el.html(trackHtml);
     $('#content').html(t.$el);
+    $grid = t.$el.find('#grid');
+    $grid.height($grid.width());
+    var cellWidth = (100 / gridWidth) + "%";
+    $grid.find('.cell').width(cellWidth).height(cellWidth);
 
     var sendCells = function(cells) {
       console.log(t.cells.length);
