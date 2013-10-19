@@ -1,17 +1,16 @@
 App.Views.SongView = Backbone.View.extend({
 
-  tagName: "div",
-
   id: "songView",
 
+  tagName: "div",
+
   events: {
-    //this.model.on('change')
   },
 
   initialize: function() {
 
     var id, trackedChanges,
-        slice = 0
+        column = 0
         t = this;
 
     App.soundr.init();
@@ -34,14 +33,14 @@ App.Views.SongView = Backbone.View.extend({
 
       var sliceToPlay = [];
       for (var i=0; i<256; i++) {
-        if(i%16 === slice && layer[i].length > 0){
+        if(i%16 === column && layer[i].length > 0){
           sliceToPlay.push(Math.floor(i/16))
         }
       }
       t.playSlice(sliceToPlay);
-      t.renderSlice(sliceToPlay);
+      t.renderSlice(column, sliceToPlay);
 
-      slice = (slice + 1) % 16;
+      column = (column + 1) % 16;
 
     }, t.model.getIntervalMillis());
   },
@@ -52,7 +51,6 @@ App.Views.SongView = Backbone.View.extend({
     // if playing, `playing` class
 
     var songTemplate = _.template(templateManager.getTemplate("song"));
-    var gridTemplate = _.template(templateManager.getTemplate("grid"));
     var songHtml = songTemplate({
       gridCells: App.Utils.makeGrid(App.settings.GRID_SIZE)
     });
@@ -66,20 +64,23 @@ App.Views.SongView = Backbone.View.extend({
     $grid.find('.cell').width(cellWidth).height(cellWidth);
   },
 
-  renderSlice: function(slice) {
-    $('.cell').removeClass('playing');
+  renderSlice: function(column, slice) {
+    //3, [1,6,9]
 
+
+
+    $('.cell').removeClass('playing');
     for (var i=0; i<slice.length; i++) {  
-      $('#cell-' + slice[i]).addClass('playing');
+      $('#cell-' + column).addClass('playing');
     }
   },
 
   playSlice: function(slice) {
 
-    // synth, drums, strings
+    // synth, synth2, drums, strings
     App.soundr.tick({
-      //tracks: slice,
-      //style: "drums"
+      tracks: slice,
+      style: "drums"
     });
 
   }
