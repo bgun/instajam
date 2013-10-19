@@ -5,25 +5,17 @@ App.Views.SongView = Backbone.View.extend({
   id: "songView",
 
   events: {
-    this.model.on('change')
+    //this.model.on('change')
   },
 
   initialize: function() {
 
-    var id, t,
-        songObj = {
-          tracks: { cells: [0, 17, 2, 19] },
-          tracks: { cells: [6] },
-          tracks: { cells: [192, 200] },
-          tracks: { cells: [240, 244, 248, 252] }
-        };
+    var id, t, trackedChanges
 
     App.soundr.init();
     this.render();
     
     var t = this;
-
-    
 
     /*trackedChanges = [
       {
@@ -37,7 +29,19 @@ App.Views.SongView = Backbone.View.extend({
     ];*/
 
     id = setInterval(function() {
-      var trackedChanges = this.model.tracksChanged();
+      trackedChanges = this.model.tracksChanged();
+
+      var output = Array(256);
+      _(output).each(function(i) {
+        output[i] = [];
+      });
+
+      _(trackedChanges).each(function(i) {
+
+
+      });
+
+      // [[],[],['user'],[],['user','luser']]
 
 
 
