@@ -16,6 +16,8 @@ App.Views.TrackView = Backbone.View.extend({
   },
 
   render: function() {
+    new FastClick(document.body);
+
     var t = this;
     var i,j;
 

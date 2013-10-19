@@ -16,7 +16,7 @@
 }
 #grid .cell .content {
   background: #555;
-  border: 0.4rem solid #222;
+  border: 0.5rem solid #222;
   border-radius: 1rem;
   box-sizing: border-box;
   height: 100%;
@@ -49,4 +49,15 @@
 
 .clear {
   clear: both;
+}
+
+@media(max-width: 400px) {
+  #grid .cell .content {
+    background: #555;
+    border: 0.3rem solid #222;
+  }
+  #grid .cell.selected .content {
+    background: white;
+    border-width: 0.2rem;
+  }
 }
