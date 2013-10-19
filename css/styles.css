@@ -1,7 +1,10 @@
 body {
   font-size: 10px;
+  background: #222;
+  height: 100%;
 	margin: 0;
   padding: 0;
+  width: 101%;
 }
 
 .hide {
@@ -9,7 +12,6 @@ body {
 }
 
 #trackView {
-  background: #222;
   height: 100%;
   position: fixed;
   width: 101%;
