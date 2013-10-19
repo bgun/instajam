@@ -1,8 +1,7 @@
 var App = App || {
   Collections: {},
   Models: {},
-  Views: {},
-  Songs: []
+  Views: {}
 };
 
 $(function() {
@@ -13,9 +12,11 @@ $(function() {
   var AppRouter = Backbone.Router.extend({
 
     routes: {
-      "songs/:song"          : "song",
-      "songs/:song/conductor" : "conductor",
-      "songs/:song/track"     : "track",
+      // "song/:song"          : "song",
+      // "song/:song/conductor" : "conductor",
+      // "song/:song/track"     : "track",
+      "song/conductor" : "conductor",
+      "song/track"     : "track",
       "*actions"               : "defaultRoute"
     },
 
@@ -42,7 +43,8 @@ $(function() {
 
   });
 
-  var appRouter = new AppRouter();
+  App.router = new AppRouter();
+  App.songs = new App.Collections.SongCollection();
 
   Backbone.history.start();
 
