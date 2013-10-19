@@ -51,6 +51,7 @@ App.Views.SongView = Backbone.View.extend({
     // if selected, `selected` class
     // if playing, `playing` class
 
+    var songTemplate = _.template(templateManager.getTemplate("song"));
     var gridTemplate = _.template(templateManager.getTemplate("grid"));
     var grid = Array( App.settings.GRID_SIZE * App.settings.GRID_SIZE );
 
