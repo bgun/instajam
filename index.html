@@ -4,16 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <!-- external libraries -->k
+  <!-- external libraries -->
   <title>Mobile Jam</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-  <div id="track-view">
-    <div id="grid-container">
-    </div>
-  </div>
+  <div id="content"></div>
 
   <div id="main"></div>
 
@@ -27,10 +24,13 @@
   <script src='app/views/MainView.js'></script>
   <script src='app/Track.js'></script>
   <script src='app/Song.js'></script>
-  <script src='app/views/SongView.js'></script>
-  <script src='app/views/TrackView.js'></script>
-  <script src='app/TrackViewController.js'></script>
+  <script src="app/controllers/SongViewController.js"></script>
+  <script src="app/controllers/TrackViewController.js"></script>
+  <script src="app/views/ConductorView.js"></script>
+  <script src="app/views/SongView.js"></script>
+  <script src="app/views/TrackView.js"></script>
+
+  <script src="app/templates/track.jst.js"></script>
 
 </body>
 </html>
-

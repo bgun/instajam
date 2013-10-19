@@ -1,4 +1,4 @@
-window.JST = {};
+window.JST = JST || {};
 
 /* in main backbone view, call
  *   var html = JST['/']()
