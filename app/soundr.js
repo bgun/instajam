@@ -4,87 +4,82 @@ App.soundr = {
 	
 	tick: function(data){
 		for (var i=0; i < data.tracks.length; i++) {
-			App.soundr.tracks[data.tracks[i]]();
+			App.soundr.play['synth'][data.tracks[i]]();
 		}
 	},
 	
-	changePreset: function(name) {
-		if(App.soundr.trackSetup.length > 0){
-			App.soundr.deregisterTracks();
-		}
-		App.soundr.presets[name]();
+	play: {
+		strings: [],
+		synth: [],
+		drums: []
 	},
-	
-	deregisterTracks: function(){
-		for(var i=0;i<App.soundr.trackSetup.length;i++){
-			App.soundr.trackSetup[i].disconnect();
-		}
-		App.soundr.trackSetup = [];
-	},
-	
+
 	presets: {
-		base: function(){
+		strings: function(){
 			
-			App.soundr.trackSetup[0] = new Gibberish.PolyKarplusStrong({damping:.8, maxVoices:12}).connect();
+			var a = new Gibberish.PolyKarplusStrong({damping:.8, maxVoices:16, amp:3}).connect();
 			
-			App.soundr.trackSetup[1] = new Gibberish.Kick({}).connect();
-			App.soundr.trackSetup[2] = new Gibberish.Snare({}).connect();
-			App.soundr.trackSetup[3] = new Gibberish.Hat({amp:2}).connect();
-			App.soundr.trackSetup[4] = new Gibberish.Cowbell({amp:.3}).connect();
-			
-			App.soundr.tracks[0] = function(){App.soundr.trackSetup[0].note(130.813);};
-			App.soundr.tracks[1] = function(){App.soundr.trackSetup[0].note(146.832);};
-			App.soundr.tracks[2] = function(){App.soundr.trackSetup[0].note(164.814);};
-			App.soundr.tracks[3] = function(){App.soundr.trackSetup[0].note(195.998);};
-			App.soundr.tracks[4] = function(){App.soundr.trackSetup[0].note(220);};
-			App.soundr.tracks[5] = function(){App.soundr.trackSetup[0].note(261.626);};
-			App.soundr.tracks[6] = function(){App.soundr.trackSetup[0].note(293.664);};
-			App.soundr.tracks[7] = function(){App.soundr.trackSetup[0].note(329.628);};
-			App.soundr.tracks[8] = function(){App.soundr.trackSetup[0].note(391.995);};
-			App.soundr.tracks[9] = function(){App.soundr.trackSetup[0].note(440);};
-			App.soundr.tracks[10] = function(){App.soundr.trackSetup[0].note(523.251);};
-			App.soundr.tracks[11] = function(){App.soundr.trackSetup[0].note(587.330);};
-			
-			App.soundr.tracks[12] = function(){App.soundr.trackSetup[1].note();};
-			App.soundr.tracks[13] = function(){App.soundr.trackSetup[2].note();};
-			App.soundr.tracks[14] = function(){App.soundr.trackSetup[3].note();};
-			App.soundr.tracks[15] = function(){App.soundr.trackSetup[4].note();};
+			App.soundr.play.strings[15] = function(){a.note(130.813);};
+			App.soundr.play.strings[14] = function(){a.note(146.832);};
+			App.soundr.play.strings[13] = function(){a.note(164.814);};
+			App.soundr.play.strings[12] = function(){a.note(195.998);};
+			App.soundr.play.strings[11] = function(){a.note(220);};
+			App.soundr.play.strings[10] = function(){a.note(261.626);};
+			App.soundr.play.strings[9] = function(){a.note(293.664);};
+			App.soundr.play.strings[8] = function(){a.note(329.628);};
+			App.soundr.play.strings[7] = function(){a.note(391.995);};
+			App.soundr.play.strings[6] = function(){a.note(440);};
+			App.soundr.play.strings[5] = function(){a.note(523.251);};
+			App.soundr.play.strings[4] = function(){a.note(587.330);};
+			App.soundr.play.strings[3] = function(){a.note(659.255);};
+			App.soundr.play.strings[2] = function(){a.note(783.991);};
+			App.soundr.play.strings[1] = function(){a.note(880.000);};
+			App.soundr.play.strings[0] = function(){a.note(1046.50);};
 			
 		},
 	
-		electro: function(){
-			App.soundr.trackSetup[0] =
-				new Gibberish.PolySynth({ attack:44, decay:4410, maxVoices:12}).connect();
+		synth: function(){
+			var a =
+				new Gibberish.PolySynth({ amp:.7, attack:44, decay:4410, maxVoices:16}).connect();
 			
-			App.soundr.trackSetup[1] = new Gibberish.Kick({}).connect();
-			App.soundr.trackSetup[2] = new Gibberish.Snare({}).connect();
-			App.soundr.trackSetup[3] = new Gibberish.Hat({amp:2}).connect();
-			App.soundr.trackSetup[4] = new Gibberish.Cowbell({amp:.3}).connect();
-			
-			App.soundr.tracks[0] = function(){App.soundr.trackSetup[0].note(130.813);};
-			App.soundr.tracks[1] = function(){App.soundr.trackSetup[0].note(146.832);};
-			App.soundr.tracks[2] = function(){App.soundr.trackSetup[0].note(164.814);};
-			App.soundr.tracks[3] = function(){App.soundr.trackSetup[0].note(195.998);};
-			App.soundr.tracks[4] = function(){App.soundr.trackSetup[0].note(220);};
-			App.soundr.tracks[5] = function(){App.soundr.trackSetup[0].note(261.626);};
-			App.soundr.tracks[6] = function(){App.soundr.trackSetup[0].note(293.664);};
-			App.soundr.tracks[7] = function(){App.soundr.trackSetup[0].note(329.628);};
-			App.soundr.tracks[8] = function(){App.soundr.trackSetup[0].note(391.995);};
-			App.soundr.tracks[9] = function(){App.soundr.trackSetup[0].note(440);};
-			App.soundr.tracks[10] = function(){App.soundr.trackSetup[0].note(523.251);};
-			App.soundr.tracks[11] = function(){App.soundr.trackSetup[0].note(587.330);};
-			
-			App.soundr.tracks[12] = function(){App.soundr.trackSetup[1].note();};
-			App.soundr.tracks[13] = function(){App.soundr.trackSetup[2].note();};
-			App.soundr.tracks[14] = function(){App.soundr.trackSetup[3].note();};
-			App.soundr.tracks[15] = function(){App.soundr.trackSetup[4].note();};
+			App.soundr.play.synth[15] = function(){a.note(130.813);};
+			App.soundr.play.synth[14] = function(){a.note(146.832);};
+			App.soundr.play.synth[13] = function(){a.note(164.814);};
+			App.soundr.play.synth[12] = function(){a.note(195.998);};
+			App.soundr.play.synth[11] = function(){a.note(220);};
+			App.soundr.play.synth[10] = function(){a.note(261.626);};
+			App.soundr.play.synth[9] = function(){a.note(293.664);};
+			App.soundr.play.synth[8] = function(){a.note(329.628);};
+			App.soundr.play.synth[7] = function(){a.note(391.995);};
+			App.soundr.play.synth[6] = function(){a.note(440);};
+			App.soundr.play.synth[5] = function(){a.note(523.251);};
+			App.soundr.play.synth[4] = function(){a.note(587.330);};
+			App.soundr.play.synth[3] = function(){a.note(659.255);};
+			App.soundr.play.synth[2] = function(){a.note(783.991);};
+			App.soundr.play.synth[1] = function(){a.note(880.000);};
+			App.soundr.play.synth[0] = function(){a.note(1046.50);};
 
+		},
+
+		drums: function(){
+			
+			var a0 = new Gibberish.Kick({}).connect();
+			var a1 = new Gibberish.Snare({}).connect();
+			var a2 = new Gibberish.Hat({amp:2}).connect();
+			var a3 = new Gibberish.Cowbell({amp:.1}).connect();
+			
+			App.soundr.play.synth[15] = function(){a0.note();};
+			App.soundr.play.synth[14] = function(){a1.note();};
+			App.soundr.play.synth[13] = function(){a2.note();};
+			App.soundr.play.synth[12] = function(){a3.note();};
 		}
 	},
 	
 	init: function() {
 		Gibberish.init();
-		App.soundr.changePreset('base');
+		App.soundr.presets.strings();
+		App.soundr.presets.synth();
+		App.soundr.presets.drums();
 		//Gibberish.Binops.export();
 	}
 };

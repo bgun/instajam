@@ -1,7 +1,7 @@
 App.Models.TrackModel = Backbone.Model.extend({
 	defaults: {
 		cells: -1,
-		name: '',
+		name: 'Unknown',
 		firebaseRef: null
 	},
 	initialize: function(options) {
@@ -12,7 +12,7 @@ App.Models.TrackModel = Backbone.Model.extend({
 
 		if (!trackPath){
 			tracksRef = new Firebase(App.firebase.baseUrl + 'tracks');
-			trackRef = tracksRef.push({cells: -1, name:''});
+			trackRef = tracksRef.push({cells: this.get('cells'), name:this.get('name')});
 			localStorage.setItem('myTrack', trackRef);
 		} else {
 			trackRef = new Firebase(trackPath);
@@ -23,10 +23,12 @@ App.Models.TrackModel = Backbone.Model.extend({
 	},
 	changeCells: function(){
 		console.log('Track.changeCells', this.get('cells'));
+		localStorage.setItem('myCells', this.get('cells'));
 		this.get('firebaseRef').child('cells').set(this.get('cells'));
 	},
 	changeName: function() {
 		this.get('firebaseRef').child('name').set(this.get('name'));
+		localStorage.setItem('myName', this.get('name'));
 	}
 });
 

@@ -17,6 +17,7 @@ App.Views.SongView = Backbone.View.extend({
     
     var t = this;
 
+    var slice = 0;
     /*trackedChanges = [
       {
         name: 'user1',
@@ -29,10 +30,10 @@ App.Views.SongView = Backbone.View.extend({
     ];*/
     
     id = setInterval(function() {
-      //console.log('hello')
+    
       trackedChanges = t.model.tracksChanged();
 
-      //console.log(trackedChanges)
+      //console.log(trackedChanges.length)
 
 
       var output = [];
@@ -42,23 +43,27 @@ App.Views.SongView = Backbone.View.extend({
 
       for (var i=0; i<trackedChanges.length; i++) {
         for (var j=0; j<trackedChanges[i].cells.length; j++) {
-          output[trackedChanges[i].cells[j]].push(trackedChanges[i].name);
+
+          output[trackedChanges[i].cells[j]].push(trackedChanges[i].key);
         }
 
       }
-      //App.soundr.tick({tracks:[0]})
-    
-      
 
-        //_(trackedChanges[i].cells).each(function(j) {
-          
-          //output[trackedChanges[i].cells[j]].push(trackedChanges[i].name);
+      var toPlay = [];
+      for (var i=0; i<256; i++) {
 
-        //});
+        if(i%16 == slice && output[i].length > 0){
+          //console.log('slice', Math.floor(i/16))
+          toPlay.push(Math.floor(i/16))
+
+        }
+      }
+      //console.log('gets called')
+      t.update(toPlay);
 
 
 
-
+      slice = (slice + 1) % 16;
     }, t.model.getIntervalMillis());
   },
 
@@ -85,6 +90,7 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   update: function(songSlice) {
+    App.soundr.tick({tracks: songSlice})
     //var testNotes = [];
     //for (var i=0; i<16; i++) {
     //  if (Math.random() < .003) {

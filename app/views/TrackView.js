@@ -12,6 +12,10 @@ App.Views.TrackView = Backbone.View.extend({
     t.render(t.options.songId);
     t.model = t.options.model;
     t.cells = [];
+    var localName = localStorage.getItem('myName');
+    if (localName) {
+      t.model.set('name', localName);
+    }
     console.log("Initializing TrackView");
   },
 
@@ -51,6 +55,7 @@ App.Views.TrackView = Backbone.View.extend({
     var cellWidth = (100 / gridWidth) + "%";
     $grid.find('.cell').width(cellWidth).height(cellWidth);
     $name = $('#userNameInput');
+    $name.val(t.model.get('name'));
 
     var sendCells = function(cells) {
       var obj = {
