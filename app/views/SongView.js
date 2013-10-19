@@ -35,17 +35,14 @@ App.Views.SongView = Backbone.View.extend({
           }
         }
 
-        /*var playerIndex = trackedChanges[intNum].trackNum;*/
-
         if (t.playing) {
-          //t.playSlice(sliceToPlay, playerIndex);
+          t.playSlice(tuples);
           t.renderSlice(column, tuples);
         }
 
       }
 
       column = (column + 1) % 16;
-      intNum = (intNum < trackedChanges.length-1) ? intNum + 1 : 0
 
     }, t.model.getIntervalMillis());
   },
@@ -100,14 +97,16 @@ App.Views.SongView = Backbone.View.extend({
     }
   },
 
-  playSlice: function(slice, playerIndex) {
-    var styles = ["synth", "synth2", "drums", "strings"],
-        style = styles[playerIndex % 4];
+  playSlice: function(slice) {
+    var t = this;
+    var styles = ["synth", "synth2", "drums", "strings"];
+    var output = [];
 
-    App.soundr.tick({
-      tracks: slice,
-      style: style
+    _.each(slice, function(s) {
+      output.push([ t.getRow(s[0]), styles[s[1]%4] ]);
     });
+
+    App.soundr.tickTuple(output);
 
   }
 
