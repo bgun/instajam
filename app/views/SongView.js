@@ -10,31 +10,23 @@ App.Views.SongView = Backbone.View.extend({
   	var id, t;
 
   	this.render();
-
-  	t = this;
-  	id = setInterval(function() {
+  	
+    var t = this;
+    id = setInterval(function() {
   		t.update();
   	}, t.model.getIntervalMillis);
   },
 
   render: function() {
+    var html = templateManager.getTemplate('song');
 
-    alert('song view render');
+  	this.$el.html( _.template(html) );
 
-    /*var data = templateManager.getTemplate('song');
-    alert(data);
-
-  	var template = _.template();
-
-  	this.$el.html(
-  		template({ songId: "blah" })
-  	);
-
-  	//$('#content').html(this.$el);*/
+  	$('#content').html(this.$el);
   },
 
   update: function() {
-
+    //App.soundr.tick({tracks:[0,1,5]})
   }
 
 });

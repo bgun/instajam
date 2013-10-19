@@ -15,9 +15,9 @@ $(function() {
   var AppRouter = Backbone.Router.extend({
 
     routes: {
-      "songs/:song"          : "song",
-      "songs/:song/conductor" : "conductor",
-      "songs/:song/track"     : "track",
+      "song/:song"          : "song",
+      "song/:song/conductor" : "conductor",
+      "song/:song/track"     : "track",
       "*actions"               : "defaultRoute"
     },
 
@@ -28,9 +28,7 @@ $(function() {
       // });
     },
 
-    song: function(songId) {
-      console.log('song', songId);
-    },
+    song: App.SongViewController.showSongView,
 
     track: function(songId) {
       console.log('track', songId);
