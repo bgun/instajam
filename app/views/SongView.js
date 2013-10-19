@@ -18,9 +18,11 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   render: function() {
-    var html = templateManager.getTemplate('song');
 
-  	this.$el.html( _.template(html) );
+    var gridTemplate  = templateManager.getTemplate("song"),
+        sidebar = "<div id='sidebar'></div>";
+
+  	this.$el.html( _.template(sidebar + gridTemplate) );
 
   	$('#content').html(this.$el);
   },
