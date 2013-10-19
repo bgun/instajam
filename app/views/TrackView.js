@@ -20,6 +20,7 @@ App.Views.TrackView = Backbone.View.extend({
   },
 
   render: function() {
+    console.time("render");
     new FastClick(document.body);
 
     var t = this;
@@ -36,8 +37,6 @@ App.Views.TrackView = Backbone.View.extend({
     // responsively set cell widths
     $grid = t.$el.find('#grid');
     $grid.height($grid.width());
-    var cellWidth = (100 / App.settings.GRID_SIZE) + "%";
-    $grid.find('.cell').width(cellWidth).height(cellWidth);
 
     $name = $('#userNameInput');
     $name.val(t.model.get('name'));
@@ -88,6 +87,7 @@ App.Views.TrackView = Backbone.View.extend({
       });
 
     window.scrollTo(0,1);
+    console.timeEnd("render");
   }
 
 });

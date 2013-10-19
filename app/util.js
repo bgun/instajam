@@ -6,6 +6,9 @@ App.Utils = {
     for(i=0;i<grid.length;i++) {
       grid[i] = { index: i };
     }
-    return gridTemplate({grid:grid});
+    return gridTemplate({
+      grid: grid,
+      gridWidth: (100 / gridSize)+"%"
+    });
   }
 }
