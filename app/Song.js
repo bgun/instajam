@@ -15,7 +15,10 @@ App.Models.SongModel = Backbone.Model.extend({
 			var tracks = [];
 			_(val).each(function(item, key){
 				if (item.cells !== -1) {
-					tracks.push(item.cells);
+					tracks.push({
+						name: key,
+						cells: item.cells
+					});
 				}
 			});
 			self.set('tracks', tracks);
