@@ -17,7 +17,7 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   render: function() {
-  	var template = JST['songId']();
+  	var template = JST['song']();
 
   	this.$el.html( template );
   },
