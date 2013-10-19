@@ -60,19 +60,21 @@ App.Views.SongView = Backbone.View.extend({
 
     $grid = this.$el.find('#grid');
     $grid.height($grid.width());
-    var cellWidth = (100 / App.settings.GRID_SIZE) + "%";
-    $grid.find('.cell').width(cellWidth).height(cellWidth);
   },
 
   renderSlice: function(column, slice) {
     //3, [1,6,9]
+    var $col = $('#column-' + column);
 
-
-
-    $('.cell').removeClass('playing');
-    for (var i=0; i<slice.length; i++) {  
-      $('#cell-' + column).addClass('playing');
+    for (row in slice) {
+      var $temp = $col.find('.cell-' + row);
+      console.log($temp);
     }
+
+    //$('.cell').removeClass('playing');
+    //for (var i=0; i<slice.length; i++) {  
+    //  $('#cell-' + column).addClass('playing');
+    //}
   },
 
   playSlice: function(slice) {
