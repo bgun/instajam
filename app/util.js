@@ -4,7 +4,10 @@ App.Utils = {
     var gridArea = gridSize * gridSize;
     var grid = Array(gridArea);
     for(i=0;i<grid.length;i++) {
-      grid[i] = { index: i };
+      grid[i] = {
+        index: i,
+        column: i%16
+      };
     }
     return gridTemplate({
       grid: grid,
