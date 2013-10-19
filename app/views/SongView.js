@@ -26,6 +26,8 @@ App.Views.SongView = Backbone.View.extend({
       }
 
       for (var i=0; i<trackedChanges.length; i++) {
+        var playerIndex = trackedChanges[i];
+        console.log(playerIndex);
         for (var j=0; j<trackedChanges[i].cells.length; j++) {
           layer[trackedChanges[i].cells[j]].push(trackedChanges[i].key);
         }
@@ -37,8 +39,10 @@ App.Views.SongView = Backbone.View.extend({
           sliceToPlay.push(Math.floor(i/16))
         }
       }
+
+      t.renderActive(layer);
       t.playSlice(sliceToPlay);
-      t.renderSlice(column, sliceToPlay);
+      t.renderSlice(column, sliceToPlay, playerIndex);
 
       column = (column + 1) % 16;
 
@@ -62,14 +66,16 @@ App.Views.SongView = Backbone.View.extend({
     $grid.height($grid.width());
   },
 
-  renderSlice: function(column, slice) {
-    $('.cell').removeClass('playing');
+  renderSlice: function(column, slice, playerIndex) {
+    // player-1 through player-12
 
-    var $col = $('.column-' + column);
-    for (row in slice) {
-      var $nodeToPlay = $col.find('.row-' + row);
-      console.log($nodeToPlay);
-      $nodeToPlay.addClass('playing');
+    $('.cell').removeClass('playing');
+    $('.column-' + column).removeClass('selected');
+
+    $('.column-' + column).addClass('playing');
+    for (i in slice) {
+      var $nodeToPlay = $('.column-' + column + '.row-' + slice[i]);
+      $nodeToPlay.addClass('selected').addClass('player-' + playerIndex);
     }
   },
 
@@ -80,6 +86,10 @@ App.Views.SongView = Backbone.View.extend({
       tracks: slice,
       style: "drums"
     });
+
+  },
+
+  renderActive: function(activeLayer) {
 
   }
 
