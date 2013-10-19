@@ -24,7 +24,7 @@ $(function() {
       // });
     },
 
-    song:  App.SongViewController.showSongView,
+    //song:  App.SongViewController.showSongView,
 
     track: App.TrackViewController.showTrackView,
 
