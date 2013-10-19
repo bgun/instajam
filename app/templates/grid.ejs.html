@@ -1,5 +1,5 @@
 <div id="grid">
   <% _.each(grid, function(g) { %>
-    <div class="cell" id="cell-<%=g.index%>"></div>
+    <div class="cell <% if(g.active) { %>active<%}%>" id="cell-<%=g.index%>"></div>
   <% }); %>
 </div>

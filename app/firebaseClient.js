@@ -1,9 +1,9 @@
 App.firebase = (function(){
 	var baseUrl = 'https://mobilejam.firebaseio.com/';
 	var init = function() {
-		var songsRef = new Firebase(baseUrl + 'songs');
-		window.songsRef = songsRef;
-		songsRef.push().set([{foo: 'wilma', text: 'Hello'}]);
+		var tracksRef = new Firebase(baseUrl + 'tracks');
+		App.tracksRef = tracksRef;
+		tracksRef.push().set([{foo: 'wilma', text: 'Hello'}]);
 	};
 	
 	return {

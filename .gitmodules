@@ -1,3 +1,0 @@
-[submodule "app/lib/gibberish"]
-	path = app/lib/gibberish
-	url = git@github.com:charlieroberts/Gibberish.git
