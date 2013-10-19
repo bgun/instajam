@@ -16,14 +16,14 @@ App.Models.SongModel = Backbone.Model.extend({
 			_(val).each(function(item, key){
 				if (item.cells !== -1) {
 					tracks.push({
-						name: key,
+						key: key,
+						name: item.name,
 						cells: item.cells
 					});
 				}
 			});
 			self.set('tracks', tracks);
 		};
-
 
 		tracksRef.on('child_changed', tracksRefChanged);
 		tracksRef.on('value', tracksRefChanged);
@@ -35,7 +35,8 @@ App.Models.SongModel = Backbone.Model.extend({
 		var i = this.get('i');
 		i++;
 		this.set('i', i);
-		console.log('tracksChanged', this.get('tracks'), i);
+		//console.log('tracksChanged', this.get('tracks'), i);
+		return this.get('tracks');
 	},
 
 	/*
