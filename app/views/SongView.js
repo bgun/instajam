@@ -26,8 +26,7 @@ App.Views.SongView = Backbone.View.extend({
       }
 
       for (var i=0; i<trackedChanges.length; i++) {
-        var playerIndex = trackedChanges[i];
-        //console.log(playerIndex);
+        var playerIndex = trackedChanges[i].trackNum;
         for (var j=0; j<trackedChanges[i].cells.length; j++) {
           layer[trackedChanges[i].cells[j]].push(trackedChanges[i].key);
         }
@@ -41,7 +40,7 @@ App.Views.SongView = Backbone.View.extend({
       }
 
       t.renderActive(layer);
-      t.playSlice(sliceToPlay);
+      t.playSlice(sliceToPlay, playerIndex);
       t.renderSlice(column, sliceToPlay, playerIndex);
 
       column = (column + 1) % 16;
@@ -79,12 +78,16 @@ App.Views.SongView = Backbone.View.extend({
     }
   },
 
-  playSlice: function(slice) {
+  playSlice: function(slice, playerIndex) {
+    var styles = ["synth", "synth2", "drums", "strings"];
+    var style = styles[playerIndex % 4];
 
-    // synth, synth2, drums, strings
+    console.log(playerIndex);
+    console.log(style);
+
     App.soundr.tick({
       tracks: slice,
-      style: "drums"
+      style: style
     });
 
   },
