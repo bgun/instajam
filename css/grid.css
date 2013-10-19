@@ -32,7 +32,11 @@
 #grid .cell.selected.player-0 .content,
 #grid .cell.selected.player-1 .content,
 #grid .cell.selected.player-2 .content,
-#grid .cell.selected.player-3 .content {
+#grid .cell.selected.player-3 .content,
+#grid .cell.selected.player-4 .content,
+#grid .cell.selected.player-5 .content,
+#grid .cell.selected.player-6 .content,
+#grid .cell.selected.player-7 .content {
   background: #1A1A1A;
 }
 #grid .cell.selected .content {
@@ -44,6 +48,10 @@
 #grid .cell.selected.player-1 .content { border: 2px solid #7AC943; }
 #grid .cell.selected.player-2 .content { border: 2px solid #FF931E; }
 #grid .cell.selected.player-3 .content { border: 2px solid #FF1D25; }
+#grid .cell.selected.player-4 .content { border: 2px solid #00FFFF; }
+#grid .cell.selected.player-5 .content { border: 2px solid #8592F9; }
+#grid .cell.selected.player-6 .content { border: 2px solid #93278F; }
+#grid .cell.selected.player-7 .content { border: 2px solid #FFFF00; }
 
 #grid .cell.playing.selected .content {
   background: #FFF;
