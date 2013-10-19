@@ -12,6 +12,14 @@ App.soundr = {
 		}
 	},
 	
+	tickTuple: function(data){
+		for (var i=0; i < data.length; i++) {
+			if(typeof App.soundr.play[data[i][1]][data[i][0]] != "undefined"){
+				App.soundr.play[data[i][1]][data[i][0]]();
+			}
+		}
+	},
+	
 	play: {
 		strings: [],
 		synth: [],
