@@ -8,12 +8,12 @@ $(function() {
 
   window.app = {};
 
-  Backbone.Router.extend({
+  var AppRouter = Backbone.Router.extend({
 
     routes: {
-      "/songs/:song/"          : "song",
-      "/songs/:song/conductor" : "conductor",
-      "/songs/:song/track"     : "track",
+      "songs/:song/"          : "song",
+      "songs/:song/conductor" : "conductor",
+      "songs/:song/track"     : "track",
       "*actions"               : "defaultRoute"
     },
 
@@ -24,17 +24,21 @@ $(function() {
     },
 
     song: function(songId) {
+      console.log('song', songId);
     },
 
-    defaultRoute: function() {
-      //alert('hi');
-    }
-
     track: function(songId) {
+      console.log('track', songId);
       // will be in a separate file asap -- ben
+    },
+
+    defaultRoute: function(actions) {
+      console.log('main');
     }
 
   });
+
+  var appRouter = new AppRouter();
 
   Backbone.history.start();
 
