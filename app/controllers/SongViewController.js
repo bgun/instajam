@@ -2,7 +2,8 @@ App.SongViewController = {
   showSongView: function(songId) {
     var songView = new App.Views.SongView({
       songId: songId,
-      el: $('')
+      el: $(''),
+      model: App.Models.SongModel
     });
   }
 }

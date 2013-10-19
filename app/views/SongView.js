@@ -27,7 +27,3 @@ App.Views.SongView = Backbone.View.extend({
   }
 
 });
-
-mySong = new App.songs.model = 
-
-.getIntervalMillis();
