@@ -4,12 +4,12 @@ App.Views.SongView = Backbone.View.extend({
 
   id: "songView",
 
-  events: { },
+  events: {
+    this.model.on('change')
+  },
 
   initialize: function() {
 
-    alert('sanity');
-    
     var id, t,
         songObj = {
           tracks: { cells: [0, 17, 2, 19] },
@@ -22,16 +22,25 @@ App.Views.SongView = Backbone.View.extend({
     this.render();
     
     var t = this;
+
+    
+
+    /*trackedChanges = [
+      {
+        name: 'user1',
+        cells: []
+      },
+      {
+        name: 'user1',
+        cells: []
+      }
+    ];*/
+
     id = setInterval(function() {
+      var trackedChanges = this.model.tracksChanged();
 
-      var slice = [];
-      _.each(songObj.tracks.cells, function(i) {
-        //if (songObj.tracks[i] < i*i) {
-        slice.push(i);
-        //}
-      });
 
-      t.update(slice);
+
     }, t.model.getIntervalMillis);
   },
 
@@ -58,8 +67,6 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   update: function(songSlice) {
-
-    console.log(songSlice);
     //var testNotes = [];
 
     //for (var i=0; i<16; i++) {
