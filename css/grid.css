@@ -5,7 +5,7 @@
   width: 32rem;
 }
 #grid .cell {
-  background: red;
+  border: 1px solid #000;
   border-radius: 1rem;
   box-sizing: border-box;
   color: #FFF;
