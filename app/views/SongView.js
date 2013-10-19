@@ -10,97 +10,69 @@ App.Views.SongView = Backbone.View.extend({
 
   initialize: function() {
 
-    var id, t, trackedChanges;
+    var id, trackedChanges,
+        slice = 0
+        t = this;
 
     App.soundr.init();
     this.render();
     
-    var t = this;
-
-    var slice = 0;
-    /*trackedChanges = [
-      {
-        name: 'user1',
-        cells: []
-      },
-      {
-        name: 'user1',
-        cells: []
-      }
-    ];*/
-    
     id = setInterval(function() {
-    
+
       trackedChanges = t.model.tracksChanged();
 
-      //console.log(trackedChanges.length)
-
-
-      var output = [];
+      var layer = [];
       for (var i=0; i<256; i++) {
-        output.push([]);
+        layer.push([]);
       }
 
       for (var i=0; i<trackedChanges.length; i++) {
         for (var j=0; j<trackedChanges[i].cells.length; j++) {
-
-          output[trackedChanges[i].cells[j]].push(trackedChanges[i].key);
+          layer[trackedChanges[i].cells[j]].push(trackedChanges[i].key);
         }
-
       }
 
-      var toPlay = [];
+      var sliceToPlay = [];
       for (var i=0; i<256; i++) {
-
-        if(i%16 == slice && output[i].length > 0){
-          //console.log('slice', Math.floor(i/16))
-          toPlay.push(Math.floor(i/16))
-
+        if(i%16 === slice && layer[i].length > 0){
+          sliceToPlay.push(Math.floor(i/16))
         }
       }
-      //console.log('gets called')
-      t.update(toPlay);
-
-
+      t.playSlice(sliceToPlay);
+      t.renderSlice(sliceToPlay);
 
       slice = (slice + 1) % 16;
+
     }, t.model.getIntervalMillis());
   },
 
   render: function() {
-
     // grid is composed of 256 divs, class `cell`
     // if selected, `selected` class
     // if playing, `playing` class
 
-    var sidebar = "<div id='sidebar'></div>";
     var gridTemplate = _.template(templateManager.getTemplate("grid"));
-    var gridSize = App.settings.GRID_SIZE * App.settings.GRID_SIZE;
-    var grid = Array(gridSize);
+    var grid = Array( App.settings.GRID_SIZE * App.settings.GRID_SIZE );
 
     for(i=0; i<grid.length; i++) {
-      grid[i] = {
-        index: i
-      }
+      grid[i] = { index: i }
     }
 
-    this.$el.html( _.template(sidebar + gridTemplate({ grid: grid })) );
+    this.$el.html( _.template( gridTemplate({ grid: grid })) );
 
     $('#content').html(this.$el);
   },
 
-  update: function(songSlice) {
-    App.soundr.tick({tracks: songSlice})
-    //var testNotes = [];
-    //for (var i=0; i<16; i++) {
-    //  if (Math.random() < .003) {
-    //    testNotes.push(i);
-    //  }
-    //}
+  renderSlice: function(slice) {
 
-    //App.soundr.tick({
-      //tracks: testNotes
-    //});
+    for (var i=0; i<slice.length; i++) {
+      $('#cell-' + slice[i]).show();
+
+    }
+  },
+
+  playSlice: function(slice) {
+    //App.soundr.tick({tracks: slice})
   }
 
 });
