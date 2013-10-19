@@ -19,7 +19,7 @@ App.Views.MainView = Backbone.View.extend({
 	},
 
 	render: function() {
-		var t = templateManager.getTemplate('Main');
+		var t = templateManager.getTemplate('main');
 		this.$el.html(t);
 	}
 
