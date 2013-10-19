@@ -5,6 +5,7 @@ App.Views.SongView = Backbone.View.extend({
   tagName: "div",
 
   events: {
+    "click .pause": "togglePause"
   },
 
   initialize: function() {
@@ -14,7 +15,8 @@ App.Views.SongView = Backbone.View.extend({
         t = this;
 
     App.soundr.init();
-    this.render();
+    t.render();
+    t.playing = true;
     
     var intNum = 0;
     id = setInterval(function() {
@@ -43,11 +45,12 @@ App.Views.SongView = Backbone.View.extend({
 
         var playerIndex = trackedChanges[intNum].trackNum;
 
-        t.renderActive(layer);
-        t.playSlice(sliceToPlay, playerIndex);
-        //console.time("render slice");
-        t.renderSlice(column, sliceToPlay, playerIndex);
-        //console.timeEnd("render slice");
+        if(t.playing) {
+          t.playSlice(sliceToPlay, playerIndex);
+          //console.time("render slice");
+          t.renderSlice(column, sliceToPlay, playerIndex);
+          //console.timeEnd("render slice");
+        }
 
       }
 
@@ -69,6 +72,18 @@ App.Views.SongView = Backbone.View.extend({
 
     t.$grid = this.$el.find('#grid');
     t.$grid.height(t.$grid.width());
+  },
+
+  togglePause: function(e) {
+    e.preventDefault();
+    var t = this;
+    if(t.playing) {
+      t.playing = false;
+      $(e.target).text('Play');
+    } else {
+      t.playing = true;
+      $(e.target).text('Pause');
+    }
   },
 
   renderSlice: function(column, slice, playerIndex) {
@@ -93,10 +108,6 @@ App.Views.SongView = Backbone.View.extend({
       tracks: slice,
       style: style
     });
-
-  },
-
-  renderActive: function(activeLayer) {
 
   }
 
