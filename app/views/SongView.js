@@ -85,7 +85,13 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   playSlice: function(slice) {
-    //App.soundr.tick({tracks: slice})
+
+    // synth, drums, strings
+    App.soundr.tick({
+      //tracks: slice,
+      //style: "drums"
+    });
+
   }
 
 });
