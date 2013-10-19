@@ -4,8 +4,6 @@ App.Views.TrackView = Backbone.View.extend({
 
   tagName: "div",
 
-  template: "track",
-
   events: {
   },
 
@@ -19,32 +17,30 @@ App.Views.TrackView = Backbone.View.extend({
     var i,j;
     console.log(songId);
 
-    var _tmpl = _.template(templateManager.getTemplate(t.template));
+    var trackTemplate = _.template(templateManager.getTemplate("track"));
+    var gridTemplate  = _.template(templateManager.getTemplate("grid"));
 
-    var gridSize = 16;
+    var gridSize = App.settings.GRID_SIZE * App.settings.GRID_SIZE;
     var grid = Array(gridSize);
-    var index = 0;
     for(i=0;i<grid.length;i++) {
-      grid[i] = Array(gridSize);
-      for(j=0;j<grid[i].length;j++) {
-        grid[i][j] = {
-          index: index
-        }
-        index++;
-      }
+      grid[i] = {
+        index: i
+      };
     }
 
-    t.$el.html(_tmpl({
-      grid: grid
-    }));
+    var trackHtml = trackTemplate({
+      subTemplate: gridTemplate({
+        grid: grid
+      })
+    });
 
-    console.log(t.$el);
-
+    t.$el.html(trackHtml);
     $('#content').html(t.$el);
 
-    $('#content').on('click','.button',function(e) {
+    $('#content').on('click','.cell',function(e) {
       e.preventDefault();
-      $(this).toggleClass('active');
+      var $t = $(this);
+      $t.toggleClass('active');
     });
   }
 

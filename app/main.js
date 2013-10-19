@@ -1,23 +1,24 @@
 var App = App || {
   Collections: {},
   Models: {},
-  Views: {}
+  Views: {},
+  settings: {
+    GRID_SIZE: 16
+  }
 };
 
 $(function() {
   templateManager.loadTemplates();
 
-  window.app = {};
-
   var AppRouter = Backbone.Router.extend({
 
     routes: {
-      // "song/:song"          : "song",
+      // "song/:song"           : "song",
       // "song/:song/conductor" : "conductor",
       // "song/:song/track"     : "track",
-      "song/conductor" : "conductor",
-      "song/track"     : "track",
-      "*actions"               : "defaultRoute"
+      "song/conductor"          : "conductor",
+      "song/track"              : "track",
+      "*actions"                : "defaultRoute"
     },
 
     conductor: function(songId) {
@@ -27,14 +28,9 @@ $(function() {
       // });
     },
 
-    song: function(songId) {
-      console.log('song', songId);
-    },
+    song: App.SongViewController.showSongView,
 
-    track: function(songId) {
-      console.log('track', songId);
-      // will be in a separate file asap -- ben
-    },
+    track: App.TrackViewController.showTrackView,
 
     defaultRoute: function(actions) {
       console.log('main');
@@ -44,7 +40,7 @@ $(function() {
   });
 
   App.router = new AppRouter();
-  App.songs = new App.Collections.SongCollection();
+  App.tracks = new App.Collections.TrackCollection();
 
   Backbone.history.start();
 
