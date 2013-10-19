@@ -1,6 +1,6 @@
 App.Models.SongModel = Backbone.Model.extend({
 	defaults: {
-		bpm: 80,
+		bpm: 100,
 		tracks: [],
 		firebaseRef: null
 	},
@@ -12,9 +12,10 @@ App.Models.SongModel = Backbone.Model.extend({
 		var tracksRefChanged = function(snapshot) {
 			var val = snapshot.val();
 			var i = 0;
+			var MAX_TRACKS = 8;
 			var tracks = [];
 			_(val).each(function(item, key){
-				if (item.cells && item.cells.length) {
+				if (item.cells && item.cells.length && tracks.length < MAX_TRACKS) {
 					tracks.push({
 						trackNum: i,
 						key: key,

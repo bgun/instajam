@@ -90,8 +90,9 @@ App.soundr = {
 		},
 		
 		synth: function(){
-			var a = new Gibberish.PolyFM({ amp:.5, cmRatio:10, index:3, attack:10000, decay:500, maxVoices:16 }).connect(); 
-			
+			var a = new Gibberish.PolyKarplusStrong({damping:.4, maxVoices:16, amp:2}).connect(); 
+			var b = new Gibberish.Reverb({input:a, roomSize:.7, wet:1, dry:.25}).connect();
+
 			App.soundr.play.synth[15] = function(){a.note(130.813);};
 			App.soundr.play.synth[14] = function(){a.note(146.832);};
 			App.soundr.play.synth[13] = function(){a.note(174.614);};

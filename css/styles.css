@@ -1,7 +1,9 @@
-body {
-  font-size: 10px;
-  color: #ccc;
+html, body {
   font-family: sans-serif;
+  font-size: 16px;
+}
+body {
+  color: #ccc;
   background: #1A1A1A;
   height: 100%;
   margin: 0;
@@ -23,23 +25,32 @@ body {
   max-width: 32rem;
   padding: 0 0.5rem;
 }
+#trackInputs {
+  padding: 0 1rem;
+}
+#clearSelected {
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 38%;
+}
 #userNameInput {
   border: 0;
   background: rgba(255,255,255,0.1);
   border-radius: 0.5rem;
   color: #AAA;
   display: block;
-  font-size: 1.4rem;
-  height: 1.8rem;
-  margin: 0 auto;
-  max-width: 90%;
+  float: right;
+  font-size: 1rem;
+  height: 2.4rem;
+  padding: 0;
   outline: none;
   text-align: center;
-  width: 100%;
+  width: 58%;
 }
 
 .main {
-  margin: 20px auto;
+  margin: 2rem auto;
   text-align: center;
 }
 .main h1 {
@@ -76,9 +87,9 @@ button {
   font-size:15px;
   font-weight:bold;
   font-style:normal;
-  height:50px;
-  line-height:40px;
-  width:100px;
+  height:2.4rem;
+  line-height:2.4rem;
+  width:10rem;
   text-decoration:none;
   text-align:center;
   text-shadow:1px 1px 0px #ffffff;
@@ -94,3 +105,15 @@ button:active {
   position:relative;
   top:1px;
 }
+
+#gridContainer button.pause {
+  display: inline-block;
+}
+
+#gridContainer #legend {
+  display: inline-block;
+}
+#legend .player-0 { color: #3FA9F5;}
+#legend .player-1 { color: #7AC943;}
+#legend .player-2 { color: #FF931E;}
+#legend .player-3 { color: #FF1D25;}
