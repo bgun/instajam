@@ -10,6 +10,7 @@ var App = App || {
 
 $(function() {
   templateManager.loadTemplates();
+  App.song = new App.Models.SongModel();
 
   var AppRouter = Backbone.Router.extend({
 
@@ -42,8 +43,6 @@ $(function() {
   });
 
   App.router = new AppRouter();
-  App.tracks = new App.Collections.TrackCollection();
-
   Backbone.history.start();
 
 });
