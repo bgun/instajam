@@ -46,5 +46,5 @@
 #grid .cell.playing.selected .content {
   background: #FFF;
   border: none;
-  box-shadow: 0 0 35px rgba(255,255,255,1);
+  box-shadow: 0 0 3.5rem rgba(255,255,255,1);
 }
