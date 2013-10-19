@@ -41,6 +41,7 @@ App.Views.TrackView = Backbone.View.extend({
     console.log(t.$el);
 
     $('#content').html(t.$el);
+    $('head').append('<link rel="stylesheet" href="css/track.css" />');
 
     $('#content').on('click','.button',function(e) {
       e.preventDefault();
