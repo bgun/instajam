@@ -18,7 +18,6 @@ App.Views.SongView = Backbone.View.extend({
     t.render();
     t.playing = true;
     
-    var intNum = 0;
     id = setInterval(function() {
 
       trackedChanges = t.model.tracksChanged();
@@ -29,10 +28,16 @@ App.Views.SongView = Backbone.View.extend({
         for (var i=0; i<256; i++) {
           layer.push([]);
         }
-
+        var users = [];
+        for (var i=0; i<trackedChanges.length; i++) {
+        	users[trackedChanges[i].trackNum] = [];
+        }
         for (var i=0; i<trackedChanges.length; i++) {
           for (var j=0; j<trackedChanges[i].cells.length; j++) {
-            layer[trackedChanges[i].cells[j]].push(trackedChanges[i].key);
+            layer[trackedChanges[i].cells[j]].push(trackedChanges[i].trackNum);
+            if(trackedChanges[i].cells[j] % 16 == column){
+            	users[trackedChanges[i].trackNum].push( Math.floor(trackedChanges[i].cells[j]/16));
+            }
           }
         }
 
@@ -43,19 +48,16 @@ App.Views.SongView = Backbone.View.extend({
           }
         }
 
-        var playerIndex = trackedChanges[intNum].trackNum;
-
         if(t.playing) {
-          t.playSlice(sliceToPlay, playerIndex);
+          t.playSlice(users);
           //console.time("render slice");
-          t.renderSlice(column, sliceToPlay, playerIndex);
+          t.renderSlice(column, sliceToPlay, 0);
           //console.timeEnd("render slice");
         }
 
       }
 
       column = (column + 1) % 16;
-      intNum = (intNum < trackedChanges.length-1) ? intNum + 1 : 0
 
     }, t.model.getIntervalMillis());
   },
@@ -100,14 +102,20 @@ App.Views.SongView = Backbone.View.extend({
     }
   },
 
-  playSlice: function(slice, playerIndex) {
-    var styles = ["synth", "synth2", "drums", "strings"],
-        style = styles[playerIndex % 4];
-
-    App.soundr.tick({
-      tracks: slice,
-      style: style
-    });
+  playSlice: function(users) {
+    var styles = ["synth", "synth2", "drums", "strings"];
+        //style = styles[3];
+    for(var i = 0; i < users.length; i++){
+    	
+    	if(typeof users[i] != "undefined"){
+    		console.log('tick',users[i])
+			App.soundr.tick({
+		      tracks: users[i],
+		      style: styles[i % 4]
+		    });
+    	}
+    }
+    
 
   }
 
