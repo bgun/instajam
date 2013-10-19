@@ -4,7 +4,13 @@ App.soundr = {
 	
 	tick: function(data){
 		for (var i=0; i < data.tracks.length; i++) {
-			App.soundr.play['synth'][data.tracks[i]]();
+			var style = data.style;
+			if(typeof data.style === "undefined"){
+				style = 'strings';
+			}
+			if(typeof App.soundr.play[style][data.tracks[i]] != "undefined"){
+				App.soundr.play[style][data.tracks[i]]();
+			}
 		}
 	},
 	
@@ -39,8 +45,7 @@ App.soundr = {
 		},
 	
 		synth: function(){
-			var a =
-				new Gibberish.PolySynth({ amp:.7, attack:44, decay:4410, maxVoices:16}).connect();
+			var a =	new Gibberish.PolySynth({ amp:.7, attack:44, decay:4410, maxVoices:16}).connect();
 			
 			App.soundr.play.synth[15] = function(){a.note(130.813);};
 			App.soundr.play.synth[14] = function(){a.note(146.832);};
@@ -67,11 +72,17 @@ App.soundr = {
 			var a1 = new Gibberish.Snare({}).connect();
 			var a2 = new Gibberish.Hat({amp:2}).connect();
 			var a3 = new Gibberish.Cowbell({amp:.1}).connect();
+			var a4 = new Gibberish.Conga({}).connect();
+			var a5 = new Gibberish.Tom({}).connect();
+			var a6 = new Gibberish.Clave({}).connect();
 			
-			App.soundr.play.synth[15] = function(){a0.note();};
-			App.soundr.play.synth[14] = function(){a1.note();};
-			App.soundr.play.synth[13] = function(){a2.note();};
-			App.soundr.play.synth[12] = function(){a3.note();};
+			App.soundr.play.drums[15] = function(){a0.note();};
+			App.soundr.play.drums[14] = function(){a1.note();};
+			App.soundr.play.drums[13] = function(){a2.note();};
+			App.soundr.play.drums[12] = function(){a3.note();};
+			App.soundr.play.drums[11] = function(){a4.note();};
+			App.soundr.play.drums[10] = function(){a5.note();};
+			App.soundr.play.drums[9] = function(){a6.note();};
 		}
 	},
 	
