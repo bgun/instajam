@@ -26,7 +26,7 @@ App.Views.TrackView = Backbone.View.extend({
     for(i=0;i<grid.length;i++) {
       grid[i] = {
         index: i,
-        active: false
+        selected: false
       };
     }
 
@@ -39,23 +39,30 @@ App.Views.TrackView = Backbone.View.extend({
     t.$el.html(trackHtml);
     $('#content').html(t.$el);
 
-    $('#content').on('click','.cell',function(e) {
+    var sendCells = function(cells) {
+      console.log(t.cells.length);
+      console.log(t.cells);
+      t.model.set({
+        cells: t.cells && t.cells.length ? t.cells : -1
+      });
+    }
+    var smartSendCells = _.debounce(sendCells, 100, true);
+
+    $('#content').on('mouseenter','.cell',function(e) {
       e.preventDefault();
       var $t = $(this);
       var index = $t.index();
 
-      if(grid[index].active) {
-        grid[index].active = false;
-        $t.removeClass('active');
+      if(grid[index].selected) {
+        grid[index].selected = false;
+        $t.removeClass('selected');
         t.cells = _.filter(t.cells,function(i) { return i != index; });
       } else {
-        grid[index].active = true;
-        $t.addClass('active');
+        grid[index].selected = true;
+        $t.addClass('selected');
         t.cells.push(index);
       }
-      t.model.set({
-        cells: t.cells
-      });
+      smartSendCells(t.cells);
     });
   }
 

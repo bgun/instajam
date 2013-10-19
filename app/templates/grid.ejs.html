@@ -1,5 +1,8 @@
 <div id="grid">
   <% _.each(grid, function(g) { %>
-    <div class="cell <% if(g.active) { %>active<%}%>" id="cell-<%=g.index%>"></div>
+    <div class="cell <% if(g.selected) { %>selected<%}%> <% if(g.playing) { %>playing<%}%>" id="cell-<%=g.index%>">
+      <div class="content"></div>
+      <div class="overlay"></div>
+    </div>
   <% }); %>
 </div>
