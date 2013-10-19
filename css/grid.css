@@ -1,20 +1,19 @@
 #grid {
   background: #111;
+  box-sizing: border-box;
   font-size: 2rem; /* 20px; */
-  height: 100%;
-  max-height: 32rem;
+  margin: 0 auto;
   max-width: 32rem;
   padding: 1rem;
-  position: absolute;
-  width: 100%;
 }
 #grid .cell {
+  border: 1px solid #000;
+  border-radius: 1rem;
+  box-sizing: border-box;
   color: #FFF;
   float: left;
-  height: 6.25%;
   line-height: 2rem;
   text-align: center;
-  width: 6.25%;
 }
 #grid .cell .content {
   background: red;
@@ -33,4 +32,8 @@
 }
 #grid .cell.playing .overlay {
   display: block;
+}
+
+.clear {
+  clear: both;
 }
