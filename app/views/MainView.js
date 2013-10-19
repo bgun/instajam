@@ -1,16 +1,16 @@
 App.Views.MainView = Backbone.View.extend({
 
-	el: "#main",
+	el: "#content",
 
 	events: {
 		'click .join': function() {
 			console.log('new track!');
-			this.$el.hide();
+			//this.$el.hide();
 			App.router.navigate('song/track', {trigger: true});
 		},
 		'click .listen': function() {
 			console.log('listening');
-			this.$el.hide();
+			//this.$el.hide();
 			App.router.navigate('song', {trigger: true});
 		}
 	},
@@ -20,7 +20,7 @@ App.Views.MainView = Backbone.View.extend({
 
 	render: function() {
 		var t = templateManager.getTemplate('Main');
-		this.$el.show().html(t);
+		this.$el.html(t);
 	}
 
 });
