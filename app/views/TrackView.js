@@ -9,13 +9,13 @@ App.Views.TrackView = Backbone.View.extend({
 
   initialize: function() {
     var t = this;
-    t.render(t.options.songId);
     t.model = t.options.model;
     t.cells = [];
     var localName = localStorage.getItem('myName');
     if (localName) {
       t.model.set('name', localName);
     }
+    t.render(t.options.songId);
     console.log("Initializing TrackView");
   },
 
