@@ -25,6 +25,12 @@ $(function() {
     song: function(songId) {
     }
 
+    track: function(songId) {
+      // will be in a separate file asap -- ben
+    }
+
   });
+
+  Backbone.history.start();
 
 });
