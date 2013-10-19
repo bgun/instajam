@@ -12,7 +12,7 @@ App.Views.MainView = Backbone.View.extend({
 	},
 
 	render: function() {
-		this.$el.html("<a href=''>Create a song.</a>");
+		this.$el.html("<a href='#/song'>Create a song.</a>");
 	}
 
 });

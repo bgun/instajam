@@ -18,18 +18,13 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   render: function() {
-  	var template = _.template(
-  		"<div id='<%= songId%'>
-  			<div id='grid'>
-  			</div>
-  		</div>"
-  	);
+  	var template = _.template("<div id=''><div id='grid'></div></div>");
 
   	this.$el.html(
   		template({ songId: "blah" })
   	);
-  	
-  	$('#content').html(this.$el);
+
+  	//$('#content').html(this.$el);
   },
 
   update: function() {
