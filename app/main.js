@@ -49,7 +49,3 @@ App.loadTemplates = function() {
     });
   });
 };
-
-
-
-
