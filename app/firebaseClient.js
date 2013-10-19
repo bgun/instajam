@@ -5,6 +5,11 @@ App.firebase = (function(){
 		App.tracksRef = tracksRef;
 		tracksRef.push().set([{foo: 'wilma', text: 'Hello'}]);
 	};
+	// var getSnapshot = function(ref, cb) {
+	// 	ref.on('child_added', function(snapshot) {
+	// 	  console.log(snapshot.val());
+	// 	});
+	// };
 	
 	return {
 		baseUrl: baseUrl,
