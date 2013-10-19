@@ -60,6 +60,8 @@ App.Views.SongView = Backbone.View.extend({
     t.$el.html(songHtml);
     $('#content').html(t.$el);
 
+    var legendView = new App.Views.LegendView({model: t.model});
+    legendView.render();
     t.$grid = this.$el.find('#grid');
     t.$grid.height(t.$grid.width());
   },

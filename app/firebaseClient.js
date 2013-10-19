@@ -13,6 +13,7 @@ App.firebase = (function(){
 	
 	return {
 		baseUrl: baseUrl,
-		init: init
+		init: init,
+		getSnapshot: getSnapshot
 	};
 })();

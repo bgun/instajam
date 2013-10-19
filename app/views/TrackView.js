@@ -5,6 +5,7 @@ App.Views.TrackView = Backbone.View.extend({
   tagName: "div",
 
   events: {
+    "click #clearSelected" : "clearSelected"
   },
 
   initialize: function() {
@@ -35,20 +36,12 @@ App.Views.TrackView = Backbone.View.extend({
     $('#content').html(t.$el);
 
     // responsively set cell widths
-    $grid = t.$el.find('#grid');
-    $grid.height($grid.width());
+    t.$grid = t.$el.find('#grid');
+    t.$grid.height(t.$grid.width());
 
-    $name = $('#userNameInput');
-    $name.val(t.model.get('name'));
+    t.$name = $('#userNameInput');
+    t.$name.val(t.model.get('name'));
 
-    var sendCells = function(cells) {
-      var obj = {
-        cells: t.cells.join(','),
-        name: $name.val()
-      };
-      console.log(obj);
-      t.model.set(obj);
-    };
     var changeCell = function(e) {
       console.log(e.type);
       var $t = $(e.currentTarget);
@@ -60,14 +53,18 @@ App.Views.TrackView = Backbone.View.extend({
       } else {
         $t.addClass('selected');
         t.cells.push(index);
+        if(t.cells.length > App.settings.MAX_SELECTIONS_PER_TRACK) {
+          var removeSelection = t.cells.shift();
+          t.$grid.find('#cell-'+removeSelection).removeClass('selected');
+        }
       }
-      smartSendCells(t.cells);
+      smartSendCells(t.cells, t.$name.val());
       return false;
     };
-    var smartSendCells = _.debounce(sendCells, 100, true);
+    var smartSendCells = _.bind(_.debounce(t.sendCells, 100, true), t);
     var dragging = false;
 
-    $grid
+    t.$grid
       .on('click','.cell',function(e) {
         changeCell(e);
       })
@@ -88,6 +85,24 @@ App.Views.TrackView = Backbone.View.extend({
 
     window.scrollTo(0,1);
     console.timeEnd("render");
+  },
+
+  sendCells: function(cells, name) {
+    var t = this;
+    var obj = {
+      cells: cells.join(','),
+      name: name
+    };
+    t.model.set(obj);
+  },
+
+  clearSelected: function(e) {
+    var t = this;
+    for(var c=0;c<t.cells.length;c++) {
+      t.$grid.find('#cell-'+t.cells[c]).removeClass('selected');
+    }
+    t.cells = [];
+    t.sendCells(t.cells, t.$name.val());
   }
 
 });

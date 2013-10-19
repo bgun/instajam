@@ -4,7 +4,8 @@ var App = App || {
   Views: {},
   Utils: {},
   settings: {
-    GRID_SIZE: 16
+    GRID_SIZE: 16,
+    MAX_SELECTIONS_PER_TRACK: 12
   }
 };
 
