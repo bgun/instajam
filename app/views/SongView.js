@@ -27,7 +27,7 @@ App.Views.SongView = Backbone.View.extend({
 
       for (var i=0; i<trackedChanges.length; i++) {
         var playerIndex = trackedChanges[i];
-        console.log(playerIndex);
+        //console.log(playerIndex);
         for (var j=0; j<trackedChanges[i].cells.length; j++) {
           layer[trackedChanges[i].cells[j]].push(trackedChanges[i].key);
         }
@@ -79,7 +79,7 @@ App.Views.SongView = Backbone.View.extend({
     }
   },
 
-  playSlice: function(slice, ) {
+  playSlice: function(slice) {
 
     // synth, synth2, drums, strings
     App.soundr.tick({
