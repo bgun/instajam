@@ -35,7 +35,8 @@ App.Models.SongModel = Backbone.Model.extend({
 		var i = this.get('i');
 		i++;
 		this.set('i', i);
-		console.log('tracksChanged', this.get('tracks'), i);
+		//console.log('tracksChanged', this.get('tracks'), i);
+		return this.get('tracks');
 	},
 
 	/*
