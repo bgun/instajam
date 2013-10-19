@@ -60,6 +60,10 @@ App.Views.TrackView = Backbone.View.extend({
       } else {
         $t.addClass('selected');
         t.cells.push(index);
+        if(t.cells.length > App.settings.MAX_SELECTIONS_PER_TRACK) {
+          var removeSelection = t.cells.shift();
+          $grid.find('#cell-'+removeSelection).removeClass('selected');
+        }
       }
       smartSendCells(t.cells);
       return false;
