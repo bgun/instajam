@@ -51,22 +51,12 @@ App.Views.SongView = Backbone.View.extend({
     // if selected, `selected` class
     // if playing, `playing` class
 
-    /*var gridTemplate = _.template(templateManager.getTemplate("grid"));
-    var grid = Array( App.settings.GRID_SIZE * App.settings.GRID_SIZE );
-
-    for(i=0; i<grid.length; i++) {
-      grid[i] = { index: i }
-    }
-
-    this.$el.html( _.template( gridTemplate({ grid: grid })) );
-
-    $('#content').html(this.$el);*/
-
     var songTemplate = _.template(templateManager.getTemplate("song"));
-
+    var gridTemplate = _.template(templateManager.getTemplate("grid"));
     var songHtml = songTemplate({
       gridCells: App.Utils.makeGrid(App.settings.GRID_SIZE)
     });
+
     t.$el.html(songHtml);
     $('#content').html(t.$el);
 
