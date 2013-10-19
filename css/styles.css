@@ -75,6 +75,25 @@ body {
 #sidebar .button.pause {
   display: inline-block;
 }
+#sidebar .control {
+  background: transparent;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+  border: 0;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+#sidebar .control:hover {
+  opacity: 0.5;
+}
+#sidebar .control.play {
+  background-image: url("../images/play.png");
+}
+#sidebar .control.pause {
+  background-image: url("../images/pause.png");
+}
 
 #legend {
   display: block;
