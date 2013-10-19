@@ -18,14 +18,13 @@ $(function() {
     },
 
     conductor: function(songId) {
-      app.views.conductor = new App.Views.ConductorView({
-        foo: "bar"
-      });
+      console.log('conductor', songId);
+      // app.views.conductor = new App.Views.ConductorView({
+      //   foo: "bar"
+      // });
     },
 
-    song: function(songId) {
-      console.log('song', songId);
-    },
+    song:  App.SongViewController.showSongView,
 
     track: App.TrackViewController.showTrackView,
 
