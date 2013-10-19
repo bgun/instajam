@@ -1,7 +1,8 @@
 window.App = {
   Collections: {},
   Models: {},
-  Views: {}
+  Views: {},
+  Templates: {}
 };
 
 $(function() {
@@ -28,6 +29,7 @@ var AppRouter = Backbone.Router.extend({
 
   defaultRoute: function(actions) {
     console.log('main');
+    new App.Views.MainView().render();
   }
 
 });
@@ -37,3 +39,17 @@ var appRouter = new AppRouter();
 Backbone.history.start();
 
 });
+
+App.loadTemplates = function() {
+  var templates = ['song', 'track'];
+  _(templates).each(function(tpl) {
+    $.get('app/templates/' + tpl + '.jst.js', function(data){
+
+      // debugger;
+    });
+  });
+};
+
+
+
+
