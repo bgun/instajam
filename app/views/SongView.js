@@ -2,8 +2,7 @@ App.Views.SongView = Backbone.View.extend({
 
   tagName: "div",
 
-  events: {
-  },
+  events: { },
 
   initialize: function() {
   	var id, t;
