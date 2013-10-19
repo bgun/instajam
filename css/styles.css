@@ -58,19 +58,24 @@ body {
 }
 
 .main {
-  margin: 2rem auto;
+  margin: 5rem auto;
   text-align: center;
 }
 .url {
   font-size: 2rem;
 }
-/*
 .main h1 {
+  margin: 0 auto;
+  width: 20rem;
+}
+.main h1 img {
+  width: 100%;
+  /*
   font-size: 5rem;
   font-family: 'Rochester', cursive;
   font-weight: normal;
+  */
 }
-*/
 
 #songView {
   margin: 2rem auto;
@@ -120,10 +125,14 @@ body {
   font-size: 1.2rem;
 }
 #legend dd {
+  background-size: auto 100%;
+  background-repeat: no-repeat;
   font-size: 0.9rem;
   font-style: italic;
-  margin-bottom: 1rem;
+  line-height: 1.5rem;
+  margin: 0 0 1rem 2rem;
 }
+
 #legend .player-0 { color: #3FA9F5;}
 #legend .player-1 { color: #7AC943;}
 #legend .player-2 { color: #FF931E;}
