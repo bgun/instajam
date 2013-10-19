@@ -13,7 +13,8 @@ $(function() {
     routes: {
       "/songs/:song/"          : "song",
       "/songs/:song/conductor" : "conductor",
-      "/songs/:song/track"     : "track"
+      "/songs/:song/track"     : "track",
+      "*actions"               : "defaultRoute"
     },
 
     conductor: function(songId) {
@@ -23,6 +24,10 @@ $(function() {
     },
 
     song: function(songId) {
+    },
+
+    defaultRoute: function() {
+      //alert('hi');
     }
 
     track: function(songId) {
