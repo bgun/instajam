@@ -1,4 +1,4 @@
-var App = {
+window.App = {
   Collections: {},
   Models: {},
   Views: {}
@@ -6,36 +6,34 @@ var App = {
 
 $(function() {
 
-  window.app = {};
+var AppRouter = Backbone.Router.extend({
 
-  var AppRouter = Backbone.Router.extend({
+  routes: {
+    "song/:song/"         : "song",
+    "song/:song/conductor": "conductor",
+    "song/:song/track"    : "track",
+    "*actions"            : "defaultRoute"
+  },
 
-    routes: {
-      "song/:song/"         : "song",
-      "song/:song/conductor": "conductor",
-      "song/:song/track"    : "track",
-      "*actions"            : "defaultRoute"
-    },
+  conductor: function(songId) {
+    console.log('conductor', songId);
+    // app.views.conductor = new App.Views.ConductorView({
+    //   foo: "bar"
+    // });
+  },
 
-    conductor: function(songId) {
-      console.log('conductor', songId);
-      // app.views.conductor = new App.Views.ConductorView({
-      //   foo: "bar"
-      // });
-    },
+  song:  App.SongViewController.showSongView,
 
-    song:  App.SongViewController.showSongView,
+  track: App.TrackViewController.showTrackView,
 
-    track: App.TrackViewController.showTrackView,
+  defaultRoute: function(actions) {
+    console.log('main');
+  }
 
-    defaultRoute: function(actions) {
-      console.log('main');
-    }
+});
 
-  });
+var appRouter = new AppRouter();
 
-  var appRouter = new AppRouter();
-
-  Backbone.history.start();
+Backbone.history.start();
 
 });
