@@ -61,6 +61,11 @@ App.Views.SongView = Backbone.View.extend({
     this.$el.html( _.template( gridTemplate({ grid: grid })) );
 
     $('#content').html(this.$el);
+
+    $grid = t.$el.find('#grid');
+    $grid.height($grid.width());
+    var cellWidth = (100 / App.settings.GRID_SIZE) + "%";
+    $grid.find('.cell').width(cellWidth).height(cellWidth);
   },
 
   renderSlice: function(slice) {

@@ -6,7 +6,6 @@
   width: 100%;
 }
 #grid .cell {
-  border-radius: 100%;
   box-sizing: border-box;
   color: #FFF;
   float: left;
@@ -14,16 +13,19 @@
   position: relative;
   text-align: center;
 }
+#grid .cell.playing {
+  background: rgba(255,255,255,0.1);
+}
 #grid .cell .content {
   background: #555;
-  border: 0.5rem solid #222;
   border-radius: 1rem;
   box-sizing: border-box;
-  height: 100%;
+  height: 50%;
+  margin: 25%;
   position: absolute;
     top: 0;
     left: 0;
-  width: 100%;
+  width: 50%;
 }
 #grid .cell .overlay {
   display: none;
@@ -32,8 +34,11 @@
     left: 0;
 }
 #grid .cell.selected .content {
-  background: white;
-  border-width: 0.3rem;
+  background: #FFF;
+  height: 80%;
+  margin: 10%;
+  width: 80%;
+  z-index: 2;
 }
 #grid .cell.selected .overlay {
   background: #222;
@@ -42,22 +47,22 @@
   height: 50%;
   margin: 25%;
   width: 50%;
+  z-index: 3;
+}
+#grid .cell.playing.selected .content {
+  box-shadow: 0 0 25px rgba(255,250,150,0.6);
+  z-index: 2;
 }
 #grid .cell.playing .overlay {
+  background: rgba(255,255,255,0.5);
   display: block;
+  height: 100%;
+  margin: 0 auto;
+  left: 49%;
+  width: 2px;
+  z-index: 3;
 }
 
 .clear {
   clear: both;
-}
-
-@media(max-width: 400px) {
-  #grid .cell .content {
-    background: #555;
-    border: 0.3rem solid #222;
-  }
-  #grid .cell.selected .content {
-    background: white;
-    border-width: 0.2rem;
-  }
 }
