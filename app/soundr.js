@@ -55,29 +55,6 @@ App.soundr = {
 		synth: function(){
 			var a =	new Gibberish.PolySynth({ amp:.5, attack:44, decay:22050, maxVoices:16}).connect();
 			
-			App.soundr.play.synth2[15] = function(){a.note(130.813);};
-			App.soundr.play.synth2[14] = function(){a.note(146.832);};
-			App.soundr.play.synth2[13] = function(){a.note(174.614);};
-			App.soundr.play.synth2[12] = function(){a.note(195.998);};
-			App.soundr.play.synth2[11] = function(){a.note(220);};
-			App.soundr.play.synth2[10] = function(){a.note(261.626);};
-			App.soundr.play.synth2[9] = function(){a.note(293.664);};
-			App.soundr.play.synth2[8] = function(){a.note(349.228);};
-			App.soundr.play.synth2[7] = function(){a.note(391.995);};
-			App.soundr.play.synth2[6] = function(){a.note(440);};
-			App.soundr.play.synth2[5] = function(){a.note(523.251);};
-			App.soundr.play.synth2[4] = function(){a.note(587.330);};
-			App.soundr.play.synth2[3] = function(){a.note(659.255);};
-			App.soundr.play.synth2[2] = function(){a.note(783.991);};
-			App.soundr.play.synth2[1] = function(){a.note(880.000);};
-			App.soundr.play.synth2[0] = function(){a.note(1046.50);};
-
-		},
-		
-		longStrings: function(){
-			var a = new Gibberish.PolyKarplusStrong({damping:0.1, maxVoices:16, amp:2}); 
-			var b = new Gibberish.Reverb({input:a, roomSize:1, wet:1, dry:.25}).connect();
-
 			App.soundr.play.synth[15] = function(){a.note(130.813);};
 			App.soundr.play.synth[14] = function(){a.note(146.832);};
 			App.soundr.play.synth[13] = function(){a.note(174.614);};
@@ -94,6 +71,29 @@ App.soundr = {
 			App.soundr.play.synth[2] = function(){a.note(783.991);};
 			App.soundr.play.synth[1] = function(){a.note(880.000);};
 			App.soundr.play.synth[0] = function(){a.note(1046.50);};
+
+		},
+		
+		longStrings: function(){
+			var a = new Gibberish.PolyKarplusStrong({damping:0.1, maxVoices:16, amp:2}); 
+			var b = new Gibberish.Reverb({input:a, roomSize:1, wet:1, dry:.25}).connect();
+
+			App.soundr.play.longStrings[15] = function(){a.note(130.813);};
+			App.soundr.play.longStrings[14] = function(){a.note(146.832);};
+			App.soundr.play.longStrings[13] = function(){a.note(174.614);};
+			App.soundr.play.longStrings[12] = function(){a.note(195.998);};
+			App.soundr.play.longStrings[11] = function(){a.note(220);};
+			App.soundr.play.longStrings[10] = function(){a.note(261.626);};
+			App.soundr.play.longStrings[9] = function(){a.note(293.664);};
+			App.soundr.play.longStrings[8] = function(){a.note(349.228);};
+			App.soundr.play.longStrings[7] = function(){a.note(391.995);};
+			App.soundr.play.longStrings[6] = function(){a.note(440);};
+			App.soundr.play.longStrings[5] = function(){a.note(523.251);};
+			App.soundr.play.longStrings[4] = function(){a.note(587.330);};
+			App.soundr.play.longStrings[3] = function(){a.note(659.255);};
+			App.soundr.play.longStrings[2] = function(){a.note(783.991);};
+			App.soundr.play.longStrings[1] = function(){a.note(880.000);};
+			App.soundr.play.longStrings[0] = function(){a.note(1046.50);};
 
 		},
 
