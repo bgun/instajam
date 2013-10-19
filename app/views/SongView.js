@@ -16,40 +16,49 @@ App.Views.SongView = Backbone.View.extend({
     App.soundr.init();
     this.render();
     
+    var intNum = 0;
     id = setInterval(function() {
 
       trackedChanges = t.model.tracksChanged();
 
-      var layer = [];
-      for (var i=0; i<256; i++) {
-        layer.push([]);
-      }
+      if (trackedChanges.length) {
 
-      for (var i=0; i<trackedChanges.length; i++) {
-        for (var j=0; j<trackedChanges[i].cells.length; j++) {
-          layer[trackedChanges[i].cells[j]].push(trackedChanges[i].key);
+        var layer = [];
+        for (var i=0; i<256; i++) {
+          layer.push([]);
         }
-      }
 
-      var sliceToPlay = [];
-      for (var i=0; i<256; i++) {
-        if(i%16 === column && layer[i].length > 0){
-          sliceToPlay.push(Math.floor(i/16))
+        for (var i=0; i<trackedChanges.length; i++) {
+          for (var j=0; j<trackedChanges[i].cells.length; j++) {
+            layer[trackedChanges[i].cells[j]].push(trackedChanges[i].key);
+          }
         }
+
+        var sliceToPlay = [];
+        for (var i=0; i<256; i++) {
+          if(i%16 === column && layer[i].length > 0){
+            sliceToPlay.push(Math.floor(i/16))
+          }
+        }
+
+        var playerIndex = trackedChanges[intNum].trackNum;
+
+        t.renderActive(layer);
+        //t.playSlice(sliceToPlay, playerIndex);
+        console.time("render slice");
+        t.renderSlice(column, sliceToPlay, playerIndex);
+        console.timeEnd("render slice");
+
       }
-      t.playSlice(sliceToPlay);
-      t.renderSlice(column, sliceToPlay);
 
       column = (column + 1) % 16;
+      intNum = (intNum < trackedChanges.length-1) ? intNum + 1 : 0
 
     }, t.model.getIntervalMillis());
   },
 
   render: function() {
-    // grid is composed of 256 divs, class `cell`
-    // if selected, `selected` class
-    // if playing, `playing` class
-
+    var t = this;
     var songTemplate = _.template(templateManager.getTemplate("song"));
     var songHtml = songTemplate({
       gridCells: App.Utils.makeGrid(App.settings.GRID_SIZE)
@@ -58,32 +67,36 @@ App.Views.SongView = Backbone.View.extend({
     t.$el.html(songHtml);
     $('#content').html(t.$el);
 
-    $grid = this.$el.find('#grid');
-    $grid.height($grid.width());
+    t.$grid = this.$el.find('#grid');
+    t.$grid.height(t.$grid.width());
   },
 
-  renderSlice: function(column, slice) {
-    //3, [1,6,9]
-    var $col = $('#column-' + column);
+  renderSlice: function(column, slice, playerIndex) {
+    var t = this;
 
-    for (row in slice) {
-      var $temp = $col.find('.cell-' + row);
-      console.log($temp);
+    t.$grid.find('.cell').removeClass('playing');
+    t.$grid.find('.column-' + column).removeClass('selected').removeClass('player-1 player-2 player-3 player-4');
+    var $cols = t.$grid.find('.column-'+column);
+    $cols.addClass('playing');
+
+    for (i in slice) {
+      var $nodeToPlay = $cols.filter('.row-' + slice[i]);
+      $nodeToPlay.addClass('selected').addClass('player-' + playerIndex);
     }
-
-    //$('.cell').removeClass('playing');
-    //for (var i=0; i<slice.length; i++) {  
-    //  $('#cell-' + column).addClass('playing');
-    //}
   },
 
-  playSlice: function(slice) {
+  playSlice: function(slice, playerIndex) {
+    var styles = ["synth", "synth2", "drums", "strings"],
+        style = styles[playerIndex % 4];
 
-    // synth, synth2, drums, strings
     App.soundr.tick({
       tracks: slice,
-      style: "drums"
+      style: style
     });
+
+  },
+
+  renderActive: function(activeLayer) {
 
   }
 
