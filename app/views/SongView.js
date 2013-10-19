@@ -5,13 +5,14 @@ App.Views.SongView = Backbone.View.extend({
   tagName: "div",
 
   events: {
-    "click .pause": "togglePause"
+    "click .play"  : "play",
+    "click .pause" : "pause"
   },
 
   initialize: function() {
 
     var id, trackedChanges,
-        column = 0
+        column = 0,
         t = this;
 
     App.soundr.init();
@@ -25,37 +26,24 @@ App.Views.SongView = Backbone.View.extend({
 
       if (trackedChanges.length) {
 
-        var layer = [];
-        for (var i=0; i<256; i++) {
-          layer.push([]);
-        }
+        var tuples = [];
 
         for (var i=0; i<trackedChanges.length; i++) {
           for (var j=0; j<trackedChanges[i].cells.length; j++) {
-            layer[trackedChanges[i].cells[j]].push(trackedChanges[i].key);
+            if ( t.getCol( trackedChanges[i].cells[j] ) === column ) {
+              tuples.push( [ trackedChanges[i].cells[j], trackedChanges[i].trackNum ] );
+            }
           }
         }
 
-        var sliceToPlay = [];
-        for (var i=0; i<256; i++) {
-          if(i%16 === column && layer[i].length > 0){
-            sliceToPlay.push(Math.floor(i/16))
-          }
-        }
-
-        var playerIndex = trackedChanges[intNum].trackNum;
-
-        if(t.playing) {
-          t.playSlice(sliceToPlay, playerIndex);
-          //console.time("render slice");
-          t.renderSlice(column, sliceToPlay, playerIndex);
-          //console.timeEnd("render slice");
+        if (t.playing) {
+          t.playSlice(tuples);
+          t.renderSlice(column, tuples);
         }
 
       }
 
       column = (column + 1) % 16;
-      intNum = (intNum < trackedChanges.length-1) ? intNum + 1 : 0
 
     }, t.model.getIntervalMillis());
   },
@@ -76,40 +64,53 @@ App.Views.SongView = Backbone.View.extend({
     t.$grid.height(t.$grid.width());
   },
 
-  togglePause: function(e) {
+  play: function(e) {
     e.preventDefault();
-    var t = this;
-    if(t.playing) {
-      t.playing = false;
-      $(e.target).text('Play');
-    } else {
-      t.playing = true;
-      $(e.target).text('Pause');
-    }
+    t.playing = true;
+  },
+  pause: function(e) {
+    e.preventDefault();
+    t.playing = false;
   },
 
-  renderSlice: function(column, slice, playerIndex) {
-    var t = this;
+  getRow: function(n) {
+    return Math.floor( n/16 );
+  },
+
+  getCol: function(n) {
+    return n % 16;
+  },
+
+  renderSlice: function(column, slice) {
+    var i,
+        t = this;
 
     t.$grid.find('.cell').removeClass('playing');
     t.$grid.find('.column-' + column).removeClass('selected').removeClass('player-1 player-2 player-3 player-4');
-    var $cols = t.$grid.find('.column-'+column);
+    var $cols = t.$grid.find('.column-' + column);
     $cols.addClass('playing');
 
     for (i in slice) {
-      var $nodeToPlay = $cols.filter('.row-' + slice[i]);
-      $nodeToPlay.addClass('selected').addClass('player-' + playerIndex);
+      var $nodeToPlay = $cols.filter('.row-' + t.getRow(slice[i][0]) );
+      $nodeToPlay.addClass('selected').addClass('player-' + slice[i][1]);
     }
   },
 
-  playSlice: function(slice, playerIndex) {
-    var styles = ["synth", "synth2", "drums", "strings"],
-        style = styles[playerIndex % 4];
+  playSlice: function(slice) {
+    var t = this;
+    var styles = ["synth", "synth2", "drums", "strings"];
+    var output = [];
 
-    App.soundr.tick({
-      tracks: slice,
-      style: style
+    _.each(slice, function(s) {
+      var trackNum = s[1];
+      var style = styles[trackNum%4];
+      // var tracks = t.model.get('tracks');
+      // var myTrack = _(tracks).where({trackNum: trackNum});
+      // myTrack.instrument = style;
+      output.push([ t.getRow(s[0]), style ]);
     });
+
+    App.soundr.tickTuple(output);
 
   }
 

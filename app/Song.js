@@ -15,9 +15,11 @@ App.Models.SongModel = Backbone.Model.extend({
 			var MAX_TRACKS = 8;
 			var tracks = [];
 			_(val).each(function(item, key){
+				var styles = ["long strings", "synth", "drums", "strings"];
 				if (item.cells && item.cells.length && tracks.length < MAX_TRACKS) {
 					tracks.push({
 						trackNum: i,
+						style: styles[i%4],
 						key: key,
 						name: item.name,
 						cells: item.cells.split(',')

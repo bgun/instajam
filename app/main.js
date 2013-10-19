@@ -5,7 +5,7 @@ var App = App || {
   Utils: {},
   settings: {
     GRID_SIZE: 16,
-    MAX_SELECTIONS_PER_TRACK: 12
+    MAX_SELECTIONS_PER_TRACK: 16
   }
 };
 
