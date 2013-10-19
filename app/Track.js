@@ -5,8 +5,17 @@ App.Models.TrackModel = Backbone.Model.extend({
 	},
 	initialize: function(options) {
 		// add to firebase
-		var tracksRef = new Firebase(App.firebase.baseUrl + 'tracks');
-		var trackRef = tracksRef.push({cells: -1});
+		var tracksRef, 
+			trackRef, 
+			trackPath = localStorage.getItem('myTrack');
+
+		if (!trackPath){
+			tracksRef = new Firebase(App.firebase.baseUrl + 'tracks');
+			trackRef = tracksRef.push({cells: -1});
+			localStorage.setItem('myTrack', trackRef);
+		} else {
+			trackRef = new Firebase(trackPath);
+		}
 		this.set('firebaseRef', trackRef);
 		this.on('change:cells', this.changeCells);
 	},
