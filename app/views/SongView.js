@@ -2,6 +2,8 @@ App.Views.SongView = Backbone.View.extend({
 
   tagName: "div",
 
+  id: "songView",
+
   events: { },
 
   initialize: function() {
@@ -16,9 +18,18 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   render: function() {
-  	var template = JST['song']();
+  	var template = _.template(
+  		"<div id='<%= songId%'>
+  			<div id='grid'>
+  			</div>
+  		</div>"
+  	);
 
-  	this.$el.html( template );
+  	this.$el.html(
+  		template({ songId: "blah" })
+  	);
+  	
+  	$('#content').html(this.$el);
   },
 
   update: function() {
