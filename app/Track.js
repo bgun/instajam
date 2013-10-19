@@ -6,7 +6,7 @@ App.Models.TrackModel = Backbone.Model.extend({
 	},
 	initialize: function(options) {
 		// add to firebase
-		var tracksRef = new Firebase(App.firebase.baseUrl + 'songs/' + options.songId + '/tracks');
+		var tracksRef = new Firebase(App.firebase.baseUrl + 'song/tracks');
 		var trackRef = tracksRef.push().set({cells: []});
 		this.set('firebaseRef', trackRef);
 	},
