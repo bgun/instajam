@@ -44,10 +44,10 @@ App.Views.SongView = Backbone.View.extend({
         var playerIndex = trackedChanges[intNum].trackNum;
 
         t.renderActive(layer);
-        //t.playSlice(sliceToPlay, playerIndex);
-        console.time("render slice");
+        t.playSlice(sliceToPlay, playerIndex);
+        //console.time("render slice");
         t.renderSlice(column, sliceToPlay, playerIndex);
-        console.timeEnd("render slice");
+        //console.timeEnd("render slice");
 
       }
 
