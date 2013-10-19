@@ -26,30 +26,18 @@ App.Views.TrackView = Backbone.View.extend({
     var i,j;
 
     var trackTemplate = _.template(templateManager.getTemplate("track"));
-    var gridTemplate  = _.template(templateManager.getTemplate("grid"));
-
-    var gridWidth = App.settings.GRID_SIZE;
-    var gridArea = gridWidth * gridWidth;
-    var grid = Array(gridArea);
-    for(i=0;i<grid.length;i++) {
-      grid[i] = {
-        index: i,
-        selected: false
-      };
-    }
 
     var trackHtml = trackTemplate({
-      subTemplate: gridTemplate({
-        grid: grid
-      })
+      gridCells: App.Utils.makeGrid(App.settings.GRID_SIZE)
     });
-
     t.$el.html(trackHtml);
     $('#content').html(t.$el);
+
     $grid = t.$el.find('#grid');
     $grid.height($grid.width());
-    var cellWidth = (100 / gridWidth) + "%";
+    var cellWidth = (100 / App.settings.GRID_SIZE) + "%";
     $grid.find('.cell').width(cellWidth).height(cellWidth);
+
     $name = $('#userNameInput');
     $name.val(t.model.get('name'));
 
@@ -66,12 +54,10 @@ App.Views.TrackView = Backbone.View.extend({
       var $t = $(e.currentTarget);
       var index = $t.index();
 
-      if(grid[index].selected) {
-        grid[index].selected = false;
+      if($t.hasClass('selected')) {
         $t.removeClass('selected');
         t.cells = _.filter(t.cells,function(i) { return i != index; });
       } else {
-        grid[index].selected = true;
         $t.addClass('selected');
         t.cells.push(index);
       }

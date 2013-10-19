@@ -2,6 +2,7 @@ var App = App || {
   Collections: {},
   Models: {},
   Views: {},
+  Utils: {},
   settings: {
     GRID_SIZE: 16
   }
