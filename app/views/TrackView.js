@@ -12,6 +12,11 @@ App.Views.TrackView = Backbone.View.extend({
   initialize: function() {
     var t = this;
     t.render(t.options.songId);
+  },
+
+  render: function(songId) {
+    var t = this;
+    console.log(songId);
 
     $.ajax({
       url: "app/templates/track.tmpl.html",
@@ -22,11 +27,6 @@ App.Views.TrackView = Backbone.View.extend({
         console.log(_.template(resp));
       }
     });
-  },
-
-  render: function(songId) {
-    var t = this;
-    console.log(songId);
   }
 
 });
