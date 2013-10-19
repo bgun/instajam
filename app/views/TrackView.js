@@ -25,14 +25,15 @@ App.Views.TrackView = Backbone.View.extend({
     var t = this;
     var i,j;
 
+    // build HTML for view, build the grid
     var trackTemplate = _.template(templateManager.getTemplate("track"));
-
     var trackHtml = trackTemplate({
       gridCells: App.Utils.makeGrid(App.settings.GRID_SIZE)
     });
     t.$el.html(trackHtml);
     $('#content').html(t.$el);
 
+    // responsively set cell widths
     $grid = t.$el.find('#grid');
     $grid.height($grid.width());
     var cellWidth = (100 / App.settings.GRID_SIZE) + "%";
@@ -67,23 +68,24 @@ App.Views.TrackView = Backbone.View.extend({
     var smartSendCells = _.debounce(sendCells, 100, true);
     var dragging = false;
 
-    $('#content').on('click','.cell',function(e) {
-      changeCell(e);
-    });
-    $('#content').on('mouseup mousedown touchstart touchend',function(e) {
-      if(e.type == "mousedown" || e.type == "touchstart") {
-        dragging = true;
-      }
-      if(e.type == "mouseup" || e.type == "touchend") {
-        dragging = false;
-      }
-    });
-    $('#content').on('mouseover touchmove','.cell',function(e) {
-      e.preventDefault();
-      if(dragging) {
+    $grid
+      .on('click','.cell',function(e) {
         changeCell(e);
-      }
-    });
+      })
+      .on('mouseup mousedown touchstart touchend',function(e) {
+        if(e.type == "mousedown" || e.type == "touchstart") {
+          dragging = true;
+        }
+        if(e.type == "mouseup" || e.type == "touchend") {
+          dragging = false;
+        }
+      })
+      .on('mouseover touchmove','.cell',function(e) {
+        e.preventDefault();
+        if(dragging) {
+          changeCell(e);
+        }
+      });
 
     window.scrollTo(0,1);
   }

@@ -67,10 +67,10 @@ App.Views.SongView = Backbone.View.extend({
   },
 
   renderSlice: function(slice) {
-    $('.cell').removeClass('play');
+    $('.cell').removeClass('playing');
 
     for (var i=0; i<slice.length; i++) {  
-      $('#cell-' + slice[i]).addClass('play');
+      $('#cell-' + slice[i]).addClass('playing');
     }
   },
 
