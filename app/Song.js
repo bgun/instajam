@@ -1,7 +1,38 @@
 App.Models.SongModel = Backbone.Model.extend({
 	defaults: {
 		bpm: 80,
-		tracks: new App.Collections.TrackCollection()
+		tracks: [],
+		firebaseRef: null,
+		i:0
+	},
+
+	initialize: function() {
+		var tracksRef = new Firebase(App.firebase.baseUrl + 'tracks');
+		var self = this;
+
+		var tracksRefChanged = function(snapshot) {
+			var val = snapshot.val();
+			var tracks = [];
+			_(val).each(function(item, key){
+				if (item.cells !== -1) {
+					tracks.push(item.cells);
+				}
+			});
+			self.set('tracks', tracks);
+		};
+
+
+		tracksRef.on('child_changed', tracksRefChanged);
+		tracksRef.on('value', tracksRefChanged);
+		this.set('firebaseRef', tracksRef);
+		this.on('change:tracks', this.tracksChanged);
+	},
+
+	tracksChanged: function() {
+		var i = this.get('i');
+		i++;
+		this.set('i', i);
+		console.log('tracksChanged', this.get('tracks'), i);
 	},
 
 	/*
@@ -13,9 +44,6 @@ App.Models.SongModel = Backbone.Model.extend({
 	*/
 	getIntervalMillis: function() {
 		return Math.round(15000/this.get('bpm'));
-	},
-	addTrack: function() {
-		this.get('tracks').add({});
 	}
 });
 
