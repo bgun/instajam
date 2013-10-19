@@ -12,6 +12,7 @@ App.Views.TrackView = Backbone.View.extend({
     t.render(t.options.songId);
     t.model = t.options.model;
     t.cells = [];
+    console.log("Initializing TrackView");
   },
 
   render: function() {
